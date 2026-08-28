@@ -1,0 +1,27 @@
+# 색인 데이터·매뉴얼 이미지 (원본/사내 자료 보호 — 공개 금지)
+indexes/
+index.npz
+crops/
+pages/
+
+# 원본 PDF (매뉴얼)
+*.pdf
+
+# 파이썬 캐시
+__pycache__/
+*.pyc
+*.pyo
+
+# Gradio 실행 시 자동 생성되는 캐시/임시 폴더
+.gradio/
+
+# 가상환경
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 스크린샷 폴더는 커밋하되, 자리표시용 .gitkeep 은 유지
+!screenshots/
