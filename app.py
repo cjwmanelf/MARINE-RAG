@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-로컬 선박기기 매뉴얼 하이브리드 검색 파이프라인 (Gradio GUI)
+로컬 선박기기 매뉴얼 RAG 안내 챗봇 (하이브리드 검색 + 근거 기반 생성, Gradio GUI)
 
 - 외부 API / 인터넷 통신 없이 로컬에서만 동작 (모델 가중치는 최초 1회만 다운로드 후 오프라인)
 - 실행 환경(CUDA / Apple MPS / CPU) 자동 감지
@@ -782,7 +782,7 @@ def build_index(files, mode, conf, do_text, ocr_conf, set_name, append, progress
         if export_note:
             lines.append(export_note)
     lines += [f"- 저장 위치: indexes/{set_name}/", f"- 실행 환경: {DEVICE.upper()}"]
-    lines.append("\n🔍 검색 탭의 '색인 세트' 드롭다운에서 이 세트를 선택해 검색하세요.")
+    lines.append("\n✅ 이 색인이 곧 챗봇·검색의 근거 데이터베이스입니다. 이제 '💬 챗봇' 탭에서 이 세트로 질문하거나 '🔍 하이브리드 검색' 탭에서 검색하세요.")
     return "\n".join(lines)
 
 
@@ -1110,16 +1110,92 @@ def chat_respond(message, history, set_name, text_threshold, img_threshold,
 def build_ui():
     layout_badge = "DocLayout-YOLO ✅" if LAYOUT_AVAILABLE else "DocLayout-YOLO ❌"
     ocr_badge = "OCR ✅" if OCR_AVAILABLE else "OCR ❌(스캔본 텍스트 제외)"
-    with gr.Blocks(title="선박기기 매뉴얼 하이브리드 검색") as demo:
+    # 첫 번째 탭(💬 챗봇) 라벨을 크게·굵게 해 다른 탭과 차별화
+    app_css = (
+        ".tab-container button:first-child{font-size:1.3rem;font-weight:700;}"
+    )
+    with gr.Blocks(title="선박기기 매뉴얼 RAG 안내 챗봇", css=app_css) as demo:
         gr.Markdown(
-            f"# 🚢 선박기기 매뉴얼 하이브리드 검색 (이미지 + 다국어 텍스트)\n"
-            f"로컬 전용 · 검출: `{layout_badge}` · OCR: `{ocr_badge}`\n\n"
-            f"이미지: `{MODEL_ID}` · 텍스트(다국어): `{TEXT_MODEL_ID}` · 실행 환경: `{DEVICE.upper()}`"
+            f"# 🚢 선박기기 매뉴얼 RAG 안내 챗봇\n"
+            f"근거 기반 답변(로컬 LLM `{LLM_MODEL}`) · 하이브리드 검색(이미지+다국어 텍스트) 내장 · 로컬 전용\n\n"
+            f"검출: `{layout_badge}` · OCR: `{ocr_badge}` · 이미지: `{MODEL_ID}` · 텍스트: `{TEXT_MODEL_ID}` · 실행: `{DEVICE.upper()}`"
         )
+
+        with gr.Tab("💬 챗봇 (RAG · 근거 기반 답변)"):
+            gr.Markdown(
+                f"매뉴얼 **근거 안에서만** 답합니다(폐쇄형). 근거가 없으면 '확인되지 않습니다'로 답합니다.\n\n"
+                f"📌 처음이면 먼저 **📁 색인 생성** 탭에서 매뉴얼을 색인하세요 — 그 색인이 챗봇의 근거 DB가 됩니다.\n\n"
+                f"생성: 로컬 **Ollama `{LLM_MODEL}`**(기본) · 답변에는 `[출처 파일 · p쪽]` 인용이 붙습니다."
+            )
+            _csets = list_index_sets()
+            with gr.Row():
+                chat_set = gr.Dropdown(
+                    label="색인 세트", choices=_csets,
+                    value=(_csets[0] if _csets else None), scale=4,
+                )
+                chat_refresh = gr.Button("🔄 목록 새로고침", scale=1)
+            chatbot = gr.Chatbot(label="답변", height=380)
+            with gr.Row():
+                chat_msg = gr.Textbox(
+                    label="질문", scale=4,
+                    placeholder="예: 청정기 분해 절차 알려줘 / cooling water pump 점검 주기",
+                )
+                chat_send = gr.Button("전송", variant="primary", scale=1)
+            with gr.Row():
+                chat_multiturn = gr.Checkbox(label="멀티턴(대화 맥락 기억)", value=False)
+                chat_clear = gr.Button("🧹 대화 초기화")
+            chat_status = gr.Textbox(label="상태", interactive=False)
+            with gr.Accordion("🔗 연관 근거 · 그림 (클릭해 원문 확인)", open=False):
+                chat_related = gr.Markdown("_질문하면 사용된 근거와 연관 자료가 여기에 표시됩니다._")
+                chat_gallery = gr.Gallery(
+                    label="관련 도면·표·페이지", columns=3, height="auto", object_fit="contain",
+                )
+            with gr.Accordion("⚙️ 고급 · 생성 백엔드", open=False):
+                with gr.Row():
+                    chat_tthr = gr.Slider(
+                        label="텍스트 임계값 (bge-m3, 낮출수록 근거 잘 잡힘)", minimum=0.3, maximum=0.9,
+                        value=0.4, step=0.01,   # 교차언어(한글→영문) 점수가 0.5~0.6대라 여유있게 0.4
+                    )
+                    chat_ithr = gr.Slider(
+                        label="이미지 임계값 (SigLIP)", minimum=0.0, maximum=1.0, value=0.1, step=0.01,
+                    )
+                chat_backend = gr.Radio(
+                    label="생성 백엔드",
+                    choices=[f"로컬 (Ollama {LLM_MODEL})", "API (외부·수동)"],
+                    value=f"로컬 (Ollama {LLM_MODEL})",
+                )
+                gr.Markdown(
+                    "⚠️ **API 선택 시 검색된 매뉴얼 내용이 외부 서버로 전송됩니다.** "
+                    "보안 자료는 로컬만 사용하세요. (키는 저장하지 않고 이 세션 메모리에서만 사용)"
+                )
+                with gr.Row():
+                    chat_api_base = gr.Textbox(
+                        label="API Base URL (OpenAI 호환)", scale=2,
+                        placeholder="https://api.example.com/v1",
+                    )
+                    chat_api_model = gr.Textbox(label="API 모델명", placeholder="예: gpt-4o-mini", scale=1)
+                chat_api_key = gr.Textbox(label="API 키", type="password", placeholder="sk-...")
+
+            _chat_inputs = [chat_msg, chatbot, chat_set, chat_tthr, chat_ithr, chat_multiturn,
+                            chat_backend, chat_api_base, chat_api_key, chat_api_model]
+            _chat_outputs = [chatbot, chat_related, chat_gallery, chat_status]
+            for trig in (chat_send.click, chat_msg.submit):
+                trig(fn=chat_respond, inputs=_chat_inputs, outputs=_chat_outputs).then(
+                    fn=lambda: "", outputs=[chat_msg],
+                )
+            chat_clear.click(
+                fn=lambda: ([], "_대화를 초기화했습니다._", [], "초기화됨"),
+                outputs=_chat_outputs,
+            )
+            chat_refresh.click(
+                fn=lambda cur: gr.update(choices=list_index_sets(), value=cur),
+                inputs=[chat_set], outputs=[chat_set],
+            )
 
         with gr.Tab("📁 색인 생성"):
             gr.Markdown(
                 "매뉴얼 PDF(스캔본/텍스트본 모두 가능)를 **드래그 앤 드롭**하세요.\n\n"
+                "📌 **여기서 만든 색인이 곧 💬 챗봇·🔍 검색이 사용하는 근거 데이터베이스가 됩니다.**\n\n"
                 "- **이미지 색인**: 도면·표를 잘라(YOLO) 또는 페이지 전체로 SigLIP2 임베딩\n"
                 "- **텍스트 색인**: 본문 글자를 추출(텍스트본)/OCR(스캔본) 후 다국어 모델로 의미 임베딩\n"
                 "  → 한글로 검색해도 영문 본문이 매칭됩니다 (예: `산소 분석기` → `oxygen analyzer`)"
@@ -1215,76 +1291,6 @@ def build_ui():
                 outputs=[set_dropdown],
             )
 
-        with gr.Tab("💬 챗봇 (RAG · 근거 기반 답변)"):
-            gr.Markdown(
-                f"매뉴얼 **근거 안에서만** 답합니다(폐쇄형). 근거가 없으면 '확인되지 않습니다'로 답합니다.\n\n"
-                f"생성: 로컬 **Ollama `{LLM_MODEL}`**(기본) · 답변에는 `[출처 파일 · p쪽]` 인용이 붙습니다."
-            )
-            _csets = list_index_sets()
-            with gr.Row():
-                chat_set = gr.Dropdown(
-                    label="색인 세트", choices=_csets,
-                    value=(_csets[0] if _csets else None), scale=4,
-                )
-                chat_refresh = gr.Button("🔄 목록 새로고침", scale=1)
-            chatbot = gr.Chatbot(label="답변", height=380)
-            with gr.Row():
-                chat_msg = gr.Textbox(
-                    label="질문", scale=4,
-                    placeholder="예: 청정기 분해 절차 알려줘 / cooling water pump 점검 주기",
-                )
-                chat_send = gr.Button("전송", variant="primary", scale=1)
-            with gr.Row():
-                chat_multiturn = gr.Checkbox(label="멀티턴(대화 맥락 기억)", value=False)
-                chat_clear = gr.Button("🧹 대화 초기화")
-            chat_status = gr.Textbox(label="상태", interactive=False)
-            with gr.Accordion("🔗 연관 근거 · 그림 (클릭해 원문 확인)", open=False):
-                chat_related = gr.Markdown("_질문하면 사용된 근거와 연관 자료가 여기에 표시됩니다._")
-                chat_gallery = gr.Gallery(
-                    label="관련 도면·표·페이지", columns=3, height="auto", object_fit="contain",
-                )
-            with gr.Accordion("⚙️ 고급 · 생성 백엔드", open=False):
-                with gr.Row():
-                    chat_tthr = gr.Slider(
-                        label="텍스트 임계값 (bge-m3, 낮출수록 근거 잘 잡힘)", minimum=0.3, maximum=0.9,
-                        value=0.4, step=0.01,   # 교차언어(한글→영문) 점수가 0.5~0.6대라 여유있게 0.4
-                    )
-                    chat_ithr = gr.Slider(
-                        label="이미지 임계값 (SigLIP)", minimum=0.0, maximum=1.0, value=0.1, step=0.01,
-                    )
-                chat_backend = gr.Radio(
-                    label="생성 백엔드",
-                    choices=[f"로컬 (Ollama {LLM_MODEL})", "API (외부·수동)"],
-                    value=f"로컬 (Ollama {LLM_MODEL})",
-                )
-                gr.Markdown(
-                    "⚠️ **API 선택 시 검색된 매뉴얼 내용이 외부 서버로 전송됩니다.** "
-                    "보안 자료는 로컬만 사용하세요. (키는 저장하지 않고 이 세션 메모리에서만 사용)"
-                )
-                with gr.Row():
-                    chat_api_base = gr.Textbox(
-                        label="API Base URL (OpenAI 호환)", scale=2,
-                        placeholder="https://api.example.com/v1",
-                    )
-                    chat_api_model = gr.Textbox(label="API 모델명", placeholder="예: gpt-4o-mini", scale=1)
-                chat_api_key = gr.Textbox(label="API 키", type="password", placeholder="sk-...")
-
-            _chat_inputs = [chat_msg, chatbot, chat_set, chat_tthr, chat_ithr, chat_multiturn,
-                            chat_backend, chat_api_base, chat_api_key, chat_api_model]
-            _chat_outputs = [chatbot, chat_related, chat_gallery, chat_status]
-            for trig in (chat_send.click, chat_msg.submit):
-                trig(fn=chat_respond, inputs=_chat_inputs, outputs=_chat_outputs).then(
-                    fn=lambda: "", outputs=[chat_msg],
-                )
-            chat_clear.click(
-                fn=lambda: ([], "_대화를 초기화했습니다._", [], "초기화됨"),
-                outputs=_chat_outputs,
-            )
-            chat_refresh.click(
-                fn=lambda cur: gr.update(choices=list_index_sets(), value=cur),
-                inputs=[chat_set], outputs=[chat_set],
-            )
-
         # 색인 완료 시: 결과 메시지 출력 + 검색 탭 드롭다운 갱신(방금 만든 세트 선택)
         index_btn.click(
             fn=build_index,
@@ -1303,7 +1309,7 @@ def build_ui():
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="선박기기 매뉴얼 하이브리드 검색")
+    parser = argparse.ArgumentParser(description="선박기기 매뉴얼 RAG 안내 챗봇 (하이브리드 검색 내장)")
     parser.add_argument("--share", action="store_true",
                         help="Gradio 임시 공개 링크(최대 1주일) 생성 — 발표·시연용 데모 배포")
     parser.add_argument("--host", default="127.0.0.1",
