@@ -1,0 +1,33 @@
+================================================================
+ TRACE-05 · T5 경계 경로 — 저신뢰 근거(스캔본 OCR) 명시
+================================================================
+ checked_at : 2026-08-29T10:31:55+09:00
+ set_name   : 구형스캔_청정기
+ backend    : local (ollama qwen3.5:2b)   |   external_egress: false
+----------------------------------------------------------------
+
+[요청]
+유청정기 백플러싱(back-flushing) 주기 얼마야?
+
+[도구 호출]
+ 1) search_manual
+     args   : { query: "유청정기 백플러싱 주기", set_name: "구형스캔_청정기", text_threshold: 0.5 }
+     result : { status: "ok", text_hits: 1, top_score: 0.52 }   # 임계값 부근(저신뢰)
+ 2) get_evidence_flags
+     args   : { set_name: "구형스캔_청정기", chunk_ids: ["OldScan_Purifier_p8_c3"] }
+     result : { status: "ok", flags: ["OCR_저신뢰","section_미확인"] }
+
+[사용 근거]
+ - [출처 OldScan_Purifier · p8]  score=0.52  url=OldScan_Purifier#page=8  flags=[OCR_저신뢰, section_미확인]
+     적용 조건: 백플러싱 주기 / 신뢰도 low (스캔본 OCR로 숫자 훼손 가능)
+
+[최종 답]
+⚠️ 저신뢰 근거입니다(스캔본 OCR).
+근거상 백플러싱 주기는 약 "○○시간"으로 보이나, 숫자가 OCR 과정에서 훼손됐을 수 있습니다.
+정확한 값은 원문 p8을 직접 확인하세요. [출처 OldScan_Purifier · p8]
+ confidence : low
+
+[상태]
+ status           : ok (저신뢰 명시)
+ 중단·이관 사유   : LOW_CONFIDENCE → 지어내지 않고 '저신뢰'로 표시, 최종 확인은 사람(원문 p8).
+================================================================

@@ -1,0 +1,32 @@
+================================================================
+ TRACE-03 · T3 정상 경로 — 도면 열람
+================================================================
+ checked_at : 2026-08-29T10:21:47+09:00
+ set_name   : 냉각수계통
+ backend    : local (ollama qwen3.5:2b)   |   external_egress: false
+----------------------------------------------------------------
+
+[요청]
+냉각수 배관 계통도 보여줘
+
+[도구 호출]
+ 1) search_manual
+     args   : { query: "냉각수 배관 계통도", set_name: "냉각수계통", text_threshold: 0.5, img_threshold: 0.1 }
+     result : { status: "ok", text_hits: 1, top_score: 0.54, image_refs: 2 }
+ 2) get_page_asset
+     args   : { set_name: "냉각수계통", ref: "crops/냉각수_계통도_p7_fig2.png" }
+     result : { status: "ok", kind: "crop" }
+
+[사용 근거]
+ - [출처 냉각수_계통도 · p7]  score=0.54  url=냉각수_계통도#page=7  flags=[]
+     적용 조건: 냉각수 계통 도면 / 신뢰도 high
+   (도면: crops/냉각수_계통도_p7_fig2.png — 클릭 확대)
+
+[최종 답]
+냉각수 배관 계통도는 p7에 있습니다. 아래 도면을 확대해 밸브·펌프 배치를 확인하세요. [출처 냉각수_계통도 · p7]
+ confidence : high
+
+[상태]
+ status           : ok
+ 중단·이관 사유   : 없음
+================================================================

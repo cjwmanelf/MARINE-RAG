@@ -1,0 +1,32 @@
+================================================================
+ TRACE-02 · T2 정상 경로 — 교차언어 조회 (한글 질의 → 영문 매뉴얼)
+================================================================
+ checked_at : 2026-08-29T10:18:22+09:00
+ set_name   : 산소분석기
+ backend    : local (ollama qwen3.5:2b)   |   external_egress: false
+----------------------------------------------------------------
+
+[요청]
+산소 분석기 교정(캘리브레이션) 방법 알려줘
+
+[도구 호출]
+ 1) search_manual
+     args   : { query: "산소 분석기 교정 방법", set_name: "산소분석기", text_threshold: 0.5 }
+     result : { status: "ok", text_hits: 2, top_score: 0.58, image_refs: 1 }
+     note   : 한글 질의가 영문 본문("oxygen analyzer calibration")에 교차언어 매칭(bge-m3)
+
+[사용 근거]
+ - [출처 O2_Analyzer_OM_EN · p33]  score=0.58  url=O2_Analyzer_OM_EN#page=33  flags=[]
+     적용 조건: 산소 분석기 2점 교정 / 신뢰도 high(교차언어 점수대 0.5~0.6)
+
+[최종 답]
+2점 교정을 수행합니다.
+① 제로 가스(질소)로 영점(zero)을 맞춥니다. [출처 O2_Analyzer_OM_EN · p33]
+② 기준 가스(known span gas)로 스팬(span)을 조정합니다. [출처 O2_Analyzer_OM_EN · p33]
+③ 각 단계에서 판독값이 안정될 때까지 대기 후 확정합니다. [출처 O2_Analyzer_OM_EN · p33]
+ confidence : high
+
+[상태]
+ status           : ok
+ 중단·이관 사유   : 없음
+================================================================
