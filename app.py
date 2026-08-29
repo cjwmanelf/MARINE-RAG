@@ -997,11 +997,18 @@ def _build_related_md(text_hits):
     return "\n\n".join(parts)
 
 
+def _norm_msg(m):
+    """Chatbot 이력 항목을 dict로 정규화 (Gradio 6.x ChatMessage 객체 대비)."""
+    if isinstance(m, dict):
+        return {"role": m.get("role", "user"), "content": m.get("content", "")}
+    return {"role": getattr(m, "role", "user"), "content": getattr(m, "content", str(m))}
+
+
 def chat_respond(message, history, set_name, text_threshold, img_threshold,
                  multiturn, backend, api_base, api_key, api_model):
     """RAG 챗 응답 생성기(스트리밍). 폐쇄형: 근거 없으면 생성하지 않는다."""
     message = (message or "").strip()
-    history = list(history or [])
+    history = [_norm_msg(m) for m in (history or [])]
     if not message:
         yield history, "_연관 자료 없음_", [], "질문을 입력하세요."
         return
@@ -1180,7 +1187,7 @@ def build_ui():
                     value=(_csets[0] if _csets else None), scale=4,
                 )
                 chat_refresh = gr.Button("🔄 목록 새로고침", scale=1)
-            chatbot = gr.Chatbot(label="답변", type="messages", height=380, show_copy_button=True)
+            chatbot = gr.Chatbot(label="답변", height=380)
             with gr.Row():
                 chat_msg = gr.Textbox(
                     label="질문", scale=4,
