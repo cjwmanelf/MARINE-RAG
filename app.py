@@ -874,13 +874,38 @@ GEN_SYSTEM_PROMPT = (
 )
 
 
+def _content_to_str(c):
+    """메시지 content를 문자열로 강제한다.
+    Gradio 6.x는 이력 메시지 content를 문자열이 아니라 리스트(파트 목록)/dict로 넘길 수 있는데,
+    Ollama는 content가 반드시 문자열이어야 한다(아니면 HTTP 400)."""
+    if c is None:
+        return ""
+    if isinstance(c, str):
+        return c
+    if isinstance(c, (list, tuple)):
+        out = []
+        for p in c:
+            if isinstance(p, str):
+                out.append(p)
+            elif isinstance(p, dict):
+                out.append(str(p.get("text") or p.get("content") or ""))
+            else:
+                out.append(str(getattr(p, "text", "") or ""))
+        return " ".join(x for x in out if x).strip()
+    if isinstance(c, dict):
+        return str(c.get("text") or c.get("content") or "")
+    return str(c)
+
+
 def build_gen_messages(query, context_blocks, history=None):
     """LLM 대화 메시지 구성. context_blocks: [(tag, text), ...]  tag='파일 · p쪽'"""
     msgs = [{"role": "system", "content": GEN_SYSTEM_PROMPT}]
     if history:                       # 멀티턴: 이전 대화 포함(맥락 해소용)
         for h in history:
-            if h.get("role") in ("user", "assistant") and h.get("content"):
-                msgs.append({"role": h["role"], "content": h["content"]})
+            role = h.get("role")
+            text = _content_to_str(h.get("content"))
+            if role in ("user", "assistant") and text:
+                msgs.append({"role": role, "content": text})
     ctx = "\n".join(
         f"({i}) [출처 {tag}] {text}" for i, (tag, text) in enumerate(context_blocks, 1)
     )
@@ -895,7 +920,10 @@ def build_gen_messages(query, context_blocks, history=None):
 def ollama_chat_stream(messages, model=LLM_MODEL, host=None):
     """로컬 Ollama /api/chat 스트리밍(NDJSON). 토큰 델타를 순차 yield."""
     host = host or OLLAMA_HOST
-    payload = json.dumps({"model": model, "messages": messages, "stream": True}).encode("utf-8")
+    # think=False: qwen3.5 등 추론 모델이 답을 thinking에만 쏟고 content를 비우는 문제 방지 (바로 답 생성)
+    payload = json.dumps(
+        {"model": model, "messages": messages, "stream": True, "think": False}
+    ).encode("utf-8")
     req = urllib.request.Request(
         host.rstrip("/") + "/api/chat", data=payload,
         headers={"Content-Type": "application/json"},
@@ -998,10 +1026,10 @@ def _build_related_md(text_hits):
 
 
 def _norm_msg(m):
-    """Chatbot 이력 항목을 dict로 정규화 (Gradio 6.x ChatMessage 객체 대비)."""
+    """Chatbot 이력 항목을 dict로 정규화 (Gradio 6.x ChatMessage 객체·배열 content 대비)."""
     if isinstance(m, dict):
-        return {"role": m.get("role", "user"), "content": m.get("content", "")}
-    return {"role": getattr(m, "role", "user"), "content": getattr(m, "content", str(m))}
+        return {"role": m.get("role", "user"), "content": _content_to_str(m.get("content"))}
+    return {"role": getattr(m, "role", "user"), "content": _content_to_str(getattr(m, "content", ""))}
 
 
 def chat_respond(message, history, set_name, text_threshold, img_threshold,
@@ -1048,9 +1076,21 @@ def chat_respond(message, history, set_name, text_threshold, img_threshold,
             acc += delta
             history[-1]["content"] = acc
             yield history, related_md, images, "생성 중…"
-    except urllib.error.URLError as e:
-        hint = (f"API 연결 실패: {e}" if is_api else
-                f"로컬 Ollama 서버 연결 실패({e}). Ollama 실행 및 `ollama pull {LLM_MODEL}` 를 확인하세요.")
+    except urllib.error.HTTPError as e:   # 서버는 응답했으나 오류(예: 모델 없음 404)
+        try:
+            detail = json.loads(e.read().decode("utf-8", "ignore")).get("error", "")
+        except Exception:  # noqa: BLE001
+            detail = ""
+        if e.code == 404 and not is_api:
+            hint = f"모델 '{LLM_MODEL}' 을(를) 찾을 수 없습니다. 터미널에서 `ollama pull {LLM_MODEL}` 로 먼저 받으세요."
+        else:
+            hint = f"{'API' if is_api else 'Ollama'} 오류 {e.code}: {detail or e.reason}"
+        history[-1]["content"] = f"⚠️ {hint}"
+        yield history, related_md, images, f"오류 {e.code}"
+        return
+    except urllib.error.URLError as e:    # 서버에 아예 연결 못 함
+        hint = (f"API 연결 실패: {e.reason}" if is_api else
+                f"로컬 Ollama 서버에 연결하지 못했습니다({e.reason}). Ollama가 실행 중인지 확인하세요.")
         history[-1]["content"] = f"⚠️ {hint}"
         yield history, related_md, images, "연결 실패"
         return
@@ -1206,8 +1246,8 @@ def build_ui():
             with gr.Accordion("⚙️ 고급 · 생성 백엔드", open=False):
                 with gr.Row():
                     chat_tthr = gr.Slider(
-                        label="텍스트 임계값 (bge-m3)", minimum=0.3, maximum=0.9,
-                        value=TEXT_THRESHOLD_DEFAULT, step=0.01,
+                        label="텍스트 임계값 (bge-m3, 낮출수록 근거 잘 잡힘)", minimum=0.3, maximum=0.9,
+                        value=0.4, step=0.01,   # 교차언어(한글→영문) 점수가 0.5~0.6대라 여유있게 0.4
                     )
                     chat_ithr = gr.Slider(
                         label="이미지 임계값 (SigLIP)", minimum=0.0, maximum=1.0, value=0.1, step=0.01,
