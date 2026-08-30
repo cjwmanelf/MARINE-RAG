@@ -23,14 +23,16 @@
 3. Pages 출처에서 Ollama 호출은 **CORS 허용** 필요(로컬 `localhost`는 기본 허용). Windows 예:
    `setx OLLAMA_ORIGINS "https://cjwmanelf.github.io"` → **Ollama 재시작**
 4. 연결 실패 시 답변 영역에 원인·재시도 방법이 표시됨(페이지 오류와 구분)
+5. ⚠️ **알려진 한계 — HTTPS 배포 → 로컬 HTTP Ollama**: 배포된 **HTTPS**(GitHub Pages) 페이지에서 **HTTP** 로컬 Ollama 호출은 브라우저의 **Private Network Access/혼합콘텐츠** 정책에 막힐 수 있습니다(`net::ERR_BLOCKED_BY_CLIENT`). Ollama가 PNA 허용 헤더를 보내지 않아 **CORS(OLLAMA_ORIGINS)로도 해결되지 않습니다.** 브라우저가 PNA를 강제하면 배포 사이트에서 **생성이 막히고**(UI·검색은 정상), 경고 모드면 동작할 수 있습니다(브라우저·버전에 따라 다름).
 
-**로컬 실행/빌드**
+**✅ 로컬 Ollama와 확실히 동작하는 방법(권장)** — HTTP로 로컬 서빙하면 위 장벽이 없습니다(검증됨):
 ```bash
 cd web
 npm install
-npm run dev      # 개발 서버 http://localhost:5173
-npm run build    # 정적 산출물 web/dist/
+npm run build && npm run preview   # http://localhost:4173 → 검색+생성+인용 완전 동작
+# 개발용: npm run dev               # http://localhost:5173
 ```
+> 배포(HTTPS) 사이트는 **UI·검색 데모 + 로컬 실행 안내** 용도이며, 실제 답변 생성은 위 로컬 HTTP 실행을 권장합니다.
 
 > 배포 확인 순서: ① 주소 열기 → ② 본인 Ollama 실행·모델 준비 → ③ 첫 방문 임베딩 다운로드 대기 → ④ (Pages면) OLLAMA_ORIGINS 허용 후 소개 질문·자료 밖 질문 각각 입력해 자산 로드·모델 연결·출처/거부 확인.
 
