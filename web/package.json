@@ -1,0 +1,18 @@
+{
+  "name": "marine-rag-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "선박기기 매뉴얼 RAG 안내 챗봇 (정적 웹 · 브라우저 임베딩 + 로컬 Ollama)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.3.3"
+  },
+  "devDependencies": {
+    "vite": "^6.0.7"
+  }
+}
