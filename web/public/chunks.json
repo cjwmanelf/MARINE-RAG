@@ -1,26 +1,1801 @@
 [
-  {"id": "SAMPLE_p1_c01", "section": "1. Overview", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 1,
-   "text": "This is a SAMPLE marine oxygen analyzer manual created for a public RAG demo. It does not contain any confidential vendor document. The analyzer measures oxygen concentration in inert gas systems and displays the reading on the front panel."},
-  {"id": "SAMPLE_p3_c01", "section": "2. Sensor", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 3,
-   "text": "The oxygen sensor is a consumable part. It must be replaced when its service life is exceeded or when the reading cannot be calibrated. The maximum service life of the sensor is about 2 years under normal operating conditions."},
-  {"id": "SAMPLE_p3_c02", "section": "2.1 Sensor Replacement", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 3,
-   "text": "To replace the sensor, turn off the analyzer, disconnect the sensor cable, unscrew the old sensor from the sensor housing, install the new sensor, then reconnect the cable and run a calibration before returning the unit to service."},
-  {"id": "SAMPLE_p5_c01", "section": "3. Calibration", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 5,
-   "text": "Calibration uses a span gas of known oxygen concentration. Select the Calibration menu, enter the span gas value printed on the cylinder, apply the gas until the reading is stable, and confirm to store the new span point."},
-  {"id": "SAMPLE_p5_c02", "section": "3.1 Zero Calibration", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 5,
-   "text": "Zero calibration should be performed with a nitrogen gas that contains no oxygen. Apply the zero gas until the reading settles near zero, then confirm. Do not perform zero calibration with ambient air, because air contains about 21 percent oxygen."},
-  {"id": "SAMPLE_p7_c01", "section": "4. Environment", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 7,
-   "text": "The storage temperature range for the analyzer and spare sensors is -15 to 55 degrees Celsius. Storing consumable parts outside this range shortens their service life and may cause inaccurate readings after installation."},
-  {"id": "SAMPLE_p7_c02", "section": "4.1 Operating Conditions", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 7,
-   "text": "The recommended operating temperature range is 0 to 45 degrees Celsius with non-condensing humidity. Keep the sample line free of moisture and dust, because contamination on the sensor face causes a slow response and drift."},
-  {"id": "SAMPLE_p9_c01", "section": "5. Alarms", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 9,
-   "text": "Two oxygen alarm setpoints are available: a high alarm and a low alarm. Enter the Alarm menu to set each threshold as a percentage of oxygen. The relay output activates when the measured value crosses the configured setpoint."},
-  {"id": "SAMPLE_p11_c01", "section": "6. Installation", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 11,
-   "text": "For installation, follow the Analyzer Installation and Connections section. Mount the unit away from direct heat, connect the sample gas inlet and the power supply, and verify the flow rate is within the specified range before power-on."},
-  {"id": "SAMPLE_p12_c01", "section": "6.1 Service Menu", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 12,
-   "text": "Advanced settings are protected. To change them, open the Tools menu, select Service, and log in with Password level 1. Changes to alarm thresholds and calibration points require this service access."},
-  {"id": "SAMPLE_p14_c01", "section": "7. Maintenance", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 14,
-   "text": "Perform a monthly visual check of the sample line, filter, and sensor. Replace the inline filter when it is discolored. Record each calibration in the maintenance log so that sensor drift over time can be reviewed."},
-  {"id": "SAMPLE_p16_c01", "section": "8. Safety", "source": "SAMPLE_O2_Analyzer_Manual.pdf", "page": 16,
-   "text": "Calibration gases are stored under pressure. Secure all cylinders, use a proper regulator, and ventilate the space. Final decisions on maintenance and operation remain with the licensed engineer, who should verify against the original manual."}
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p1_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 1,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p1_c02",
+  "text": "Manual Part no. 1479645 (01381-AL)",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 1,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p2_c01",
+  "text": "Program Menu Structure",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 2,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p2_c02",
+  "text": "2 < +/-- < +/-- <",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 2,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p2_c03",
+  "text": "Figure 1: Program menu structure of the G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 2,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p3_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 3,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p3_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 3 Content 1 INTRODUCTION 5 1.1 ABOUT THIS MANUAL 5 1.2 INQUIRIES AND FEEDBACK 5 1.3 ABOUT THE ANALYZER 6 2 ANALYZER SPECIFICATIONS 8 3 ANALYZER INSTALLATION & CONNECTIONS 9 3.1 CONTROL AT DELIVERY 9 3.2 WHERE TO INSTALL THE ANALYZER 9 3.3 SAFETY ASPECTS 10 3.4 ELECTRICAL CONNECTION 12 3.4.1 Power Supply 12 3.4.2",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 3,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p3_c03",
+  "text": "Sensor Connections – SEN 13 3.4.3 Relay Outputs – D-OUT 13 3.4.4 Input Connections – A-IN 14 3.4.5 Analog Output Connections – A-OUT 15 3.4.6 SD Card 15 3.4.7 Other Connections 16 4 MENU STRUCTURE 17 4.1 MAIN MENU 17 4.2 GRAPH MENU 18 4.3 INFORMATION MENU 19 4.4 CALIBRATION MENU 20 4.5 TOOLS MENU 20 4.6 NAVIGATING THE MENU STRUCTURE 23 5 CONFIGURATION & COMMISSIONING 24 5.1",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 3,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p3_c04",
+  "text": "SETTING OF BASIC DISPLAY PARAMETERS 24 5.2 SETTING OF ALARM LIMITS 25 5.3 SETTING OF THE ANALOG INPUT 26 5.4 SETTING OF ANALOG OUTPUTS 27 5.4.1 Analog Output 1 27 5.4.2 Analog Output 2 29 5.5 BACK-FLUSHING & AUTO CALIBRATION 29 5.6 LOADING DEFAULT SETTINGS & FACTORY SETTINGS 30 5.7 COMMISSIONING OF THE ANALYZER 31 6 CALIBRATION 32 6.1 CALIBRATION WITH KNOWN OXYGEN GASES 32 6.2",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 3,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p3_c05",
+  "text": "ARTIFICIAL CALIBRATION OF OXYGEN SIGNAL 34",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 3,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p4_c01",
+  "text": "Content",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 4,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p4_c02",
+  "text": "4 7 ROUTINE MAINTENANCE 35 7.1 ANALYZER 35 7.2 CALIBRATION 35 7.3 SENSOR 35 7.4 GAS CONNECTION 36 8 TROUBLE SHOOTING 37 9 PARTS LIST 39 10 APPENDIX 41 10.1 SETTING OF ANALOG INPUT 41 10.2 CUTOUT DIMENSIONS 43",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 4,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p4_c03",
+  "text": "Table of Figures FIGURE 1: PROGRAM MENU STRUCTURE OF THE G36P OXYGEN ANALYZER (INSIDE COVER) 2 FIGURE 1-1: SIMPLIFIED SCHEMATIC OF THE ZIRCONIA CELL 6 FIGURE 3-1: THE G36P CONNECTION TERMINALS 12 FIGURE 4-1: THE G36P MAIN MENU AND FOUR FUNCTIONAL MENUS 17 FIGURE 4-2: HISTORY AND SETTINGS 19 FIGURE 4-3: NAVIGATING THE MENU STRUCTURE 23 FIGURE 5-1: BASIC DISPLAY SETTINGS 24",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 4,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p4_c04",
+  "text": "FIGURE 5-2: SETTINGS OF ALARM LIMITS 25 FIGURE 5-3: SETTINGS OF ANALOG OUTPUT 1 27 FIGURE 5-4: SETTING OF BACK-FLUSHING 30 FIGURE 6-1: CALIBRATION MENU STRUCTURE AND QUICK GUIDE 33 FIGURE 10-1: MAIN MENU IF THE ANALOG INPUT IS AGREED TO BE USED 41 FIGURE 10-2: CUTOUT DIMENSIONS FOR G36P OXYGEN ANALYZER 43",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 4,
+  "section": "G36p  Oxygen Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p5_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 5,
+  "section": "1 Introduction"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p5_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 5 1 Introduction 1.1 About this Manual This manual contains data and instructions for the installation, operation, and maintenance of the G36p Oxygen Analyzer. The instructions have been made in general terms and do not take into considera- tion a specific installation. As such, the manual is designed only for the G36p Oxy-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 5,
+  "section": "1 Introduction"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p5_c03",
+  "text": "gen Analyzer. The instructions for the installation, operation, and maintenance of the complete analyzing system including sampling board designed for the G36p Oxygen Analyz- er by Green Instruments A/S are provided in a separate manual. The manual does not describe all possible situations but only the most common and known situations and cannot replace the necessary education of the personnel.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 5,
+  "section": "1 Introduction"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p5_c04",
+  "text": "Should situations not described in the manual occur which cannot be solved in ac- cordance with normal known practice and good workmanship, the operator should contact Green Instruments A/S for instructions. Green Instruments A/S reserves the right to minor alterations and improvements owing to developments without being obliged to enter the corresponding changes in this manual.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 5,
+  "section": "1 Introduction"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p5_c05",
+  "text": "Green Instruments A/S reserves the copyright of the manual. Without prior written permission of Green Instruments A/S, the manual may not be copied and given to unauthorized people. 1.2 Inquiries and Feedback All claims and inquiries for spares shall be addressed to Green Instruments A/S or our distributors.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 5,
+  "section": "1 Introduction"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c01",
+  "text": "Introduction",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c02",
+  "text": "6 In all correspondence or when ordering spare parts, please carefully state the equipment type and serial number which you can find on the label on the back of the analyzer.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c03",
+  "text": "Green Instruments A/S appreciates all feedback and suggestions for improvement. If you have any questions or find any errors in the manual, you are welcome to contact us at the following address:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c04",
+  "text": "Green Instruments A/S Erhvervsparken 29 DK-9700 Brønderslev Denmark Phone: Fax: +45 9645 4500 +45 9645 4501 E-mail: Web: service@greeninstruments.com www.greeninstruments.com 1.3 About the Analyzer The G36p Oxygen Analyzer continuously measures the content of oxygen with concentrations up to 21.0 %. The analyzer can be used to measure the content of",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c05",
+  "text": "oxygen in N2 or CO2 based inert gas, or in stack gas, or in connection with ex- haust gas recirculation (EGR). The G36p Oxygen Analyzer is designed for front panel mounting. The G36p Oxygen Analyzer uses a zirconia sensor. The zirconium dioxide sensors have long been established as industry standards. The G36p uses a new type of zir- conia sensor, which can be used in a wide range of applications.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c06",
+  "text": "The most important element of the sensor is the zirconia cell. At high temperatures, the oxy- gen ions can diffuse through the zirconium dioxide mem- brane. When the membrane is exposed to environment that contains different amounts of oxygen (e.g. the sensor inter- nal reference gas on one side and sample gas on the other), nature seeks to balance itself, and the transportation of ions",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c07",
+  "text": "through the membrane will generate an electrical charge.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c08",
+  "text": "Sample Gas Ambient Air Zirconium Dioxide Membrane O2– O2– ZrO2 O2 O2 O2 O2 O2 O2 O2 O2 O2 V e– e–",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p6_c09",
+  "text": "Figure 1-1: Simplified schematic of the zirconia cell",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 6,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p7_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 7,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p7_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 7 This charge depends on the amount of the passing oxygen ions i.e. the difference between the oxygen levels in the sample gas and the reference gas. This voltage will be detected and converted into a signal that is proportional to the oxygen con- centration in the sample gas. The signal will be processed in the analyzer and the",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 7,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p7_c03",
+  "text": "oxygen concentration of the sample gas will be shown in the display. The G36p Oxygen Analyzer has CE and MED markings as well as DNV, Bureau Veritas and Lloyd's Register Type Approvals. Please note the most updated certificates can always be found in our homepage at http://greeninstruments.com/downloads/certificates/",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 7,
+  "section": "1.3 About the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p8_c01",
+  "text": "Analyzer Specification",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 8,
+  "section": "2 Analyzer Specifications"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p8_c02",
+  "text": "8 2 Analyzer Specifications G36p Analyzer Analyzer types: Inert Gas O2 Analyzer Stack Gas O2 Analyzer EGR-O2 Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 8,
+  "section": "2 Analyzer Specifications"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p8_c03",
+  "text": "Monitors O2 content in inert gas (N2 or CO2 based) Monitors O2 content in stack gas Monitors O2 content in exhaust gas recirculation Sensor types Zirconia sensor type SEN1 or SEN9 Measurement range 0.0 % to 21.0 % O2 Ambient temperature 0 °C … 70 °C Ambient humidity Up to 100 % at all relevant temperatures Power supply 24 VDC Power consumption Max. 40 VA per analyzer – recommended fuse: 4 AT",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 8,
+  "section": "2 Analyzer Specifications"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p8_c04",
+  "text": "Sample flow 0.2 … 8.0 l/m Sample temperature SEN1: ≤ 250 oC; SEN9: ≤ 650 oC Sample pressure SEN1: max.1 bar; SEN9: max. 4 bar Digital display Touch screen 71 x 39 mm Output signals Active 4…20 mA – range selectable – default 0.0…25.0 % Load output (max.) 600 ohm/24 VDC Relays 4 relays, volt free, 24 V AC/DC, 5 A Alarm functions Low or High O2 level – set points freely configurable",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 8,
+  "section": "2 Analyzer Specifications"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p8_c05",
+  "text": "High-High O2 level – set point freely configurable System failure alarm Response time* 90 % of measuring scale in less than 45 sec. with sample flow rate of 0.8 l/m, sample line of 1 m Repeatability +/– 0.1 % of the measuring range Linearity/Accuracy +/– 0.5 % of the measuring range Drift (one month) +/– 0.1 % of the measuring range Dimensions Cut-out dimensions 95 × 178 × 71 mm (H×W×D)",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 8,
+  "section": "2 Analyzer Specifications"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p8_c06",
+  "text": "75 x 155 mm (H x W) Weight (analyzer only) 0,8 kg without packaging Enclosure IP55 when the included gasket is mounted Optional: O2 analyzer with pressure compensation module, BV’s product certificate. Specifications are subject to changes without notice. * Response time depends on the sample flow rate and the length of the sample line.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 8,
+  "section": "2 Analyzer Specifications"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p9_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 9,
+  "section": "3 Analyzer Installation & Connections"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p9_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 9 3 Analyzer Installation & Connections Read this chapter in its entirety before installing the analyzer. 3.1 Control at Delivery When you receive the G36p Oxygen Analyzer, please inspect and confirm that the received scope of supply is in accordance with the packing list and that nothing is damaged.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 9,
+  "section": "3 Analyzer Installation & Connections"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p9_c03",
+  "text": "Any discrepancy should be reported to the supplier immediately. If any of the received parts are damaged, the shipping company should be informed, and new parts should be made available before completing the installation 3.2 Where to Install the Analyzer The G36p is designed for front mounting in control panels. To obtain IP55 tight-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 9,
+  "section": "3 Analyzer Installation & Connections"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p9_c04",
+  "text": "ness, the included gasket must be mounted between the hole that is cut in the pan- el and the display front. Satisfactory operation, faultless functions, and minimal maintenance of the G36p are achieved by paying attention to the following notes: The equipment should be installed in a clean area away from dust, oil mist, and moisture. The analyzer should be installed at viewing level in an area",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 9,
+  "section": "3 Analyzer Installation & Connections"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p9_c05",
+  "text": "with good access for operating and servicing. The location and installation of the analyzer must be chosen, so that the ambient temperature is below 70°C at any time. The gasses supplied to the sensor must have a constant flow and pressure. This flow and pressure control is achieved with the sampling system that is typically delivered with the analyzer. Please consult the respective manual or",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 9,
+  "section": "3 Analyzer Installation & Connections"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p9_c06",
+  "text": "contact Green Instruments A/S. The sensor houses for both SEN1 and SEN9 have 1/8” BSP connection. Sam- pling tube and vent line should be arranged in the way which ensures the flow and pressure at sensor house constant and within the required range.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 9,
+  "section": "3 Analyzer Installation & Connections"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p10_c01",
+  "text": "Analyzer Installation & Connections",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 10,
+  "section": "3.3 Safety Aspects"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p10_c02",
+  "text": "10 The sensor can be installed up to 6 m from the analyzer. The sensor and the sensor house shall be mounted horizontally (sensor pointing sideways) or downwards (sensor pointing down) to prevent the water condensation collect- ing at the sensor house. 3.3 Safety Aspects Warning Follow the operating instructions! Make sure that all power and signal cables are connected correctly before op-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 10,
+  "section": "3.3 Safety Aspects"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p10_c03",
+  "text": "erating the analyzer. The sensor must not be exposed to strong mechanical shocks. Otherwise the sensor element may crack without visible damage. The sensor and sensor housing are hot and can cause severe burning of per- sonnel if not handled with care. The G36p Oxygen Analyzer is only suitable for installation in a safe, non- hazardous area and not suitable for use with flammable sample gases.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 10,
+  "section": "3.3 Safety Aspects"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p10_c04",
+  "text": "The installation and operation of the G36p Oxygen Analyzer and associated equipment must be carried out by skilled, trained, and certified personnel. Green Instruments A/S does not take any responsibility for the operation of the analyzer and associated equipment whatsoever. The analyzer must only be applied as described in this instruction manual. If",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 10,
+  "section": "3.3 Safety Aspects"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p10_c05",
+  "text": "the analyzer is used in a manner not specified by Green Instruments, the pro- tection provided by the analyzer may be impaired. Successful and safe operation of this equipment is dependent upon proper handling, installation, operation, and maintenance. Hazardous voltage! Always disconnect the power before installing or servicing the analyzer. Ignoring",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 10,
+  "section": "3.3 Safety Aspects"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p10_c06",
+  "text": "this warning can result in severe personal injury or material damage. Read the manual carefully to ensure that all power and signal leads are connected correctly. Make sure that the analyzer is connected to the correct voltage (see rating marked on the analyzer name plate). Circuit breaker! The installation must include a way to switch off the electrical power by a clearly",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 10,
+  "section": "3.3 Safety Aspects"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p10_c07",
+  "text": "marked switch or circuit breaker external to the analyzer. The external switch or circuit breaker shall be placed in close proximity to the analyzer and within easy reach of the operator.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 10,
+  "section": "3.3 Safety Aspects"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 11 Overload protection! For compliance with the IEC 61010-1 (2003) safety requirements, the installation must include a means of overcurrent protection to provide protection against ex- cessive energy being drawn from the power supply system in case of a fault in the analyzer. Installation and fault finding!",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c03",
+  "text": "Electrical installation and fault finding on the analyzer should only be undertaken by a suitably trained and qualified engineer. EMC! For compliance with the EMC product standard IEC 60533 (1999), the connection cables for the main supply, relays, interface, and analog output signals should be shielded or provided with equivalent protection. Special precautions have to be",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c04",
+  "text": "taken in connection to \"long\" signals or control lines of more than 30 meter. Sensor! The sensor must not be exposed to strong mechanical shocks. Mechanical shocks may cause the sensor element to crack without visible damage. The sensor must be connected to the analyzer before the analyzer is powered up (risk of damage). As soon as the analyzer is under voltage, the connection to the",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c05",
+  "text": "sensor must not be interrupted. Therefore, please disconnect the power when you need to connect or disconnect the sensor. Connections! The power supply and all electrical connections are accessed at the back of the analyzer. Poisonous gases! Both sensor types, SEN1 and SEN9 are not suitable for installation in an area with a high concentration of methane (CH4).",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c06",
+  "text": "Besides, a reduced life time can occur if the sensor is subjected to lead, phosphor, silicon, halogens or high concentration of sulfur. Recycling! Please do not dispose the G36p Oxygen Analyzer with regular refuse. Disposal should be in accordance with the requirements of the current statutory regulations. Symbol identification",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c07",
+  "text": "Caution, risk of danger",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c08",
+  "text": "Caution, hot surface",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c09",
+  "text": "Caution, risk of electrical shock",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c10",
+  "text": "Protective earth",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p11_c11",
+  "text": "The CE mark proves the compliance of the instrument with the requirements of the relevant EU directives",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 11,
+  "section": "Overload protection!"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p12_c01",
+  "text": "Analyzer Installation & Connections",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 12,
+  "section": "3.4 Electrical Connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p12_c02",
+  "text": "12 3.4 Electrical Connection Note Each analyzer will be configured at the factory to be either: an Inert Gas Oxygen Analyzer for monitoring O2 in inert gas an Stack Gas Oxygen Analyzer for monitoring O2 in stack gas an EGR Oxygen Analyzer for monitoring O2 in the EGR system For the default configuration and connection of each analyzer, please",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 12,
+  "section": "3.4 Electrical Connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p12_c03",
+  "text": "see the Testing & Configuration Sheet attached to each analyzer. The electrical connections are dependent on the actual system configuration. The terminals are all located on the back of the analyzer. For details, please see Figure 3-1. Only those functions to be used shall be connected. Please choose the cables that fulfill the following requirements:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 12,
+  "section": "3.4 Electrical Connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p12_c04",
+  "text": "Wire size for analog input and CAN connection: 1 x 1.0 mm2 w/screen Wire size for all other connections:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 12,
+  "section": "3.4 Electrical Connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p12_c05",
+  "text": "1 x 1.5 mm2 w/screen SD-CARD CAN 4. A-OUT 2 + 5. A-OUT 2 – 1. A-OUT 1 + 2. A-OUT 1 – 3. NOT USED A-OUT 6. GND 5. Oxygen heat 4. NOT USED 3. Oxygen 2. Oxygen 1. Oxygen 1. A-IN 1 + 2. A-IN 1 – 24 V DC 8.3 COM 1.1 NC 2.1 COM 3.1 NO 4.2 NC 5.2 COM 6.2 NO 7.3 NC 9.3 NO 10.4 NC 11.4 COM 12.4 NO D-OUT SEN A – IN ON OFF 2AT – Fuse 5x20 FUSE",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 12,
+  "section": "3.4 Electrical Connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p12_c06",
+  "text": "Figure 3-1: The G36p connection terminals 3.4.1 Power Supply The power supply terminal is located at the bottom right corner and is marked supply rating (24 VDC). For details please see figure 3-1. Before connecting the power supply, please make sure that the power supply rating of the analyzer corre- sponds with the power supply available.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 12,
+  "section": "3.4 Electrical Connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 13 3.4.2 Sensor Connections – SEN The analyzer is equipped with either a SEN1 or a SEN9 sensor (see the Testing & Configuration Sheet). The sensor is connected to the terminal SEN in the analyzer.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c03",
+  "text": "Note Each analyzer is delivered with cable connections that are fit for use for either SEN1 or SEN9. See chapter 61H9 for the spare parts list.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c04",
+  "text": "The sensors are connected to the terminal SEN as follows:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c05",
+  "text": "Terminal SEN Pins at SEN1 Pins at SEN9’s connection With Phoenix cable Terminal 1 (Sensor electrode) 3 1(BN-brown) )",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c06",
+  "text": "Terminal 2 (Sensor electrode) 2 2 (WH white)) Terminal 3 (Sensor electrode) 1 3 (BU- Blue) Terminal 4 (No connection)",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c07",
+  "text": "Terminal 5 (Sensor heating) 4 4 (Black) Terminal 6 (Ground) 5 5 (GY-grey) The cable between sensor and the analyzer can be delivered up to 6 m in length. 3.4.3 Relay Outputs – D-OUT The analyzer is arranged with four relay outputs connected to D-OUT with 12 terminals. It is important to note that the configuration of the analyzer might deviate from the configurations listed below.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c08",
+  "text": "Please see the Testing & Configuration Sheet that is attached to each analyzer. The default relay functions and connections of the Inert Gas Oxygen Analyzer are as follows: Relay No. Relay function Terminal Connections Relay 1 Alarm High/Low O2 level Terminals 1.1-2.1-3.1 (NC-COM-NO) Inverted Normally energized Relay 2 Alarm High High O2 level Terminals 4.2-5.2-6.2 (NC-COM-NO) Inverted",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p13_c09",
+  "text": "Normally energized Relay 3 System failure alarm* Terminals 7.3-8.3-9.3 (NC-COM-NO) Inverted Normally energized Relay 4 Calibration Span Gas Terminals 10.4-11.4-12.4 (NC-COM-NO) Normally de-energized Relay outputs are modified on request of Alfa La- val (see page 44)",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 13,
+  "section": "3.4.2 Sensor Connections – SEN"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p14_c01",
+  "text": "Analyzer Installation & Connections",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 14,
+  "section": "Normally energized"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p14_c02",
+  "text": "14",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 14,
+  "section": "Normally energized"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p14_c03",
+  "text": "The Stack Gas Oxygen Analyzer relay functions and connections are as follows: Relay No. Relay function Terminal Connections Relay 1 Alarm High/Low/High- High O2 level Terminals 1.1-2.1-3.1 (NC-COM-NO) Inverted Normally energized Relay 2 System failure alarm Terminals 4.2-5.2-6.2 (NC-COM-NO) Inverted Normally energized Relay 3 Auto Back-flushing Terminals 7.3-8.3-9.3 (NC-COM-NO) Normally",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 14,
+  "section": "Normally energized"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p14_c04",
+  "text": "de-energized Relay 4 Auto-Calibration Terminals 10.4-11.4-12.4 (NC-COM-NO) Normally de-energized Alarms The values for three O2 level alarms (Low, High, and High-High) can be set fol- lowing instruction in section 5.2. The system failure alarm includes a sensor alarm and alarm for open loop of the analog outputs. Normally energized",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 14,
+  "section": "Normally energized"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p14_c05",
+  "text": "Normally energized means that the relay is energized in the alarm free condition during operation. The relay will be de-energized when there is an alarm or when the supply voltage disappears from the analyzer. Thus, the normally energized re- lays will give a fault signal in the event of failure of power to the analyzer. Normally de-energized",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 14,
+  "section": "Normally energized"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p14_c06",
+  "text": "Normally de-energized means that the relay is de-energized in the normal operat- ing condition. For the Inert Gas Oxygen Analyzer, relay 4 (normally de-energized) will be energized in span calibration condition. For the Stack Gas Oxygen Ana- lyzer or the EGR Oxygen Analyzer, relay 3 or 4 respectively will be energized when the analyzer is back-flushing or auto calibrating. 3.4.4",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 14,
+  "section": "Normally energized"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p14_c07",
+  "text": "Input Connections – A-IN The analog input connections A–IN are placed next to the sensor connections SEN. The terminal is arranged with two poles for one active analog input signal 4- 20 mA (Analog Input 1). Active input signal means signal voltage from external source. For setting of the analog input please see appendix 10.1.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 14,
+  "section": "Normally energized"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p15_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 15,
+  "section": "3.4.5  Analog Output Connections – A-OUT"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p15_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 15 3.4.5 Analog Output Connections – A-OUT There are two active 4-20 mA output signals* for load up to 600 ohm. The config- uration is as follows: Terminals 1 & 2 = Analog Output 1 for the remote indication of oxygen level Terminal 3 = No connection Terminals 4 & 5 = Analog Output 2 (optional)",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 15,
+  "section": "3.4.5  Analog Output Connections – A-OUT"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p15_c03",
+  "text": "* Active output signal means signal voltage from the G36p analyzer. For setting of analog outputs please see section 5.4. 3.4.6 SD Card The SD card is used for storage of the historical trend of O2 and the logbook. The SD card can also be used to load a new software version to the analyzer. Data log The internal memory of the analyzer measures and saves six values every minute.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 15,
+  "section": "3.4.5  Analog Output Connections – A-OUT"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p15_c04",
+  "text": "However, the internal memory can only store one hour of logging, which is equal to 360 log values. If there is no SD card installed the new log values will super- sede the old log values. This means there will be no historical trend curve and alarm logs as well. However, if you place an SD card in the analyzer, the internal memory will be saved on the SD card every minute.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 15,
+  "section": "3.4.5  Analog Output Connections – A-OUT"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p15_c05",
+  "text": "If the analyzer alarm and logbook functions are ON, the alarms will also be logged on the SD card. There are two log files in the SD card, a log file for O2 values g1x.log and a log file for alarms g1x.alm. If you want to read the log files directly from the SD card using a Windows- operated computer you have to use Notepad. Do not open the log files in Word- Pad.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 15,
+  "section": "3.4.5  Analog Output Connections – A-OUT"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p15_c06",
+  "text": "WordPad will damage the format of the log files, and the analyzer will be un- able to log any more data on the SD card. The best way to read the log files is to copy them to the local disk of your com- puter and then open them from your computer. This way, you can use any program that can open a txt-file including Notepad, WordPad, MS Word and MS Excel",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 15,
+  "section": "3.4.5  Analog Output Connections – A-OUT"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p15_c07",
+  "text": "The data in the log file – g1x.log includes 5 columns, i.e.: YYYY-MM-DD HH:MM:SS Datalog of A–OUT 1 (O2 *100) Datalog of A–OUT 2 Unix time 2009-11-12 13:01:54 2089 0000 1258027314 The SD card shall be replaced after two years due to the limited capacity.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 15,
+  "section": "3.4.5  Analog Output Connections – A-OUT"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p16_c01",
+  "text": "Analyzer Installation & Connections",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 16,
+  "section": "Software and default configuration uploading"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p16_c02",
+  "text": "16 Software and default configuration uploading The folder bin at the SD card includes two files: G1.bin and g1parm.bin. G1.bin is the software file and g1parm.bin is the default configuration file. If Green Instruments delivers a new software version with two files named G1.bin and g1parm.bin, the following steps will guide you through the installa- tion:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 16,
+  "section": "Software and default configuration uploading"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p16_c03",
+  "text": "Replace the old files at the SD card with the new files G1.bin and g1parm.bin that you have received. Set the SD card back in the analyzer. Then, restart the analyzer. Now the ana- lyzer will automatically check the SD card to see if there is a new software version. If yes, the new software will automatically be loaded to the internal memory of the analyzer.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 16,
+  "section": "Software and default configuration uploading"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p16_c04",
+  "text": "After uploading the new software version, reload our default settings by choosing Load default settings in Tools setting\\Service (password level 2)\\Load default settings. After uploading the new software version, you have to reset the analyzer fol- lowing the instructions in chapter 5. 3.4.7 Other Connections The CAN connection is not in use by default.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 16,
+  "section": "Software and default configuration uploading"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p17_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 17,
+  "section": "4 Menu structure"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p17_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 17 4 Menu structure Please see Figure 1 (inside cover) for the Program Menu Structure 4.1 Main Menu The analyzer is designed with a touch screen. The Main Menu displays the cur- rent oxygen value in percent, and to the right four function keys are displayed.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 17,
+  "section": "4 Menu structure"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p17_c03",
+  "text": "The function keys are connected to four different functional menus: Graph, In- formation, Calibration and Tools. <",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 17,
+  "section": "4 Menu structure"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p17_c04",
+  "text": "Figure 4-1: The G36p main menu and four functional menus",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 17,
+  "section": "4 Menu structure"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p18_c01",
+  "text": "Menu Structure",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 18,
+  "section": "4.2 Graph Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p18_c02",
+  "text": "18 If the alarm function is on and the alarm condition starts, the alarm message will be displayed at the bottom left corner of the screen. 4.2 Graph Menu Pressing changes the display into a graphical mode in which a trend curve of the log values (Y-axis) is shown on a time scale (X-axis). The actual oxygen value in percent is displayed in the upper right corner of the graph screen as Current.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 18,
+  "section": "4.2 Graph Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p18_c03",
+  "text": "The trend curve displays the log values from the SD card. The trend screen has 108 dots in the time line. Therefore, the trend curve will show 1 log value per dot if the X timing is set at 18 minutes (6 log values/minute x 18 minutes = 108 val- ues). If the X timing is less than 18 minutes, the trend curve will be shown as a dotted line.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 18,
+  "section": "4.2 Graph Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p18_c04",
+  "text": "If the X timing is 36 minutes, two values will be printed at the same X-position. Similarly, if the X-timing is 180 minutes, 10 values will be printed at the same X- position with all different Y values. Pressing gives access to the History time menu, where you can choose to see the trend curve in a specific historical period and change the setting for the trend curve.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 18,
+  "section": "4.2 Graph Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p18_c05",
+  "text": "Note for Stack Gas Oxygen Analyzer During back-flushing, the Current status is changed to bFrozen with the oxygen value measured before the back-flushing. During auto calibration, the Current status is changed to cFrozen with the oxygen value measured before the calibration. History time & Graph settings To see the trend curve in a specific historical period, it is possible to change the",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 18,
+  "section": "4.2 Graph Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p18_c06",
+  "text": "values in Date & Time. If for example it is now 12:28 and you want to see the trend curve at 11:00 you have to go through the following steps First, select Time and enter the historical point of time. Then, select Locate history point, and the screen will show to the trend curve at that specific time.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 18,
+  "section": "4.2 Graph Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p19_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 19,
+  "section": "4.3 Information Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p19_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 19 +/-- +/-- +/-- +/--",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 19,
+  "section": "4.3 Information Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p19_c03",
+  "text": "Figure 4-2: History and settings",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 19,
+  "section": "4.3 Information Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p19_c04",
+  "text": "It will take time for the analyzer to browse an old history point. The longer time you want to go back, the longer time the ana- lyzer will require to recall the history. When the analyzer is recalling history, the touch screen will freeze and will not im- mediately react to touching. If you want to browse a history point that dates back more than a week, it will be",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 19,
+  "section": "4.3 Information Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p19_c05",
+  "text": "best to read the history data directly from the log file at the SD card. For details of how to read the log file, please refer to section 3.4.6. X-timing shows the time range of the trending graph, which can be set as re- quired. However, the time range should not be over 1440 minutes (24 hours). The time range is displayed on the lower part of the graph screen with the starting point",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 19,
+  "section": "4.3 Information Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p19_c06",
+  "text": "in the bottom left corner and the ending point in the bottom right corner. Y-limits shows the maximum measurement range displayed in the trend curve. Default setting is 25 %. Y-limits are displayed in the top left corner of the graph screen as Max. 4.3 Information Menu If you press the following information will appear:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 19,
+  "section": "4.3 Information Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p19_c07",
+  "text": "Sensor diagnostic Shows the status of the sensor: OK indicates the sensor is working HGerr, VMerr, UNerr, IAerr, IPerr, and HDerr indicate sensor fail- ure or connection failure of a sensor cable. Sensor temperature Shows the current temperature of the sensor. After starting the analyzer, it will take about five minutes for the sensor to reach its normal operating temperature.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 19,
+  "section": "4.3 Information Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p19_c08",
+  "text": "The operating temperature of SEN9 is approx. 785 oC. The operating temperature of SEN1 is approx. 750 oC. If the sensor temperature is much lower than the normal operat- ing temperature, the display of oxygen will be incorrect. This can be caused a bad connection between the sensor and the sensor connection terminal SEN, a defect sensor, or too high sample/gas flow through the sensor.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 19,
+  "section": "4.3 Information Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p20_c01",
+  "text": "Menu Structure",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 20,
+  "section": "4.4 Calibration Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p20_c02",
+  "text": "20 Raw sensor cnt Shows the raw adc count signal from the sensor. Analog output 0 Shows the current O2 in percent from Analog output 1 (Ao00).l Analog output 1 Not in use as per default (Ao01). Relay outputs 1-4 Shows the status of relay outputs 1-4: ON or OFF. Software version Shows the software version of the analyzer. For installation of new software version, see section 3.4.6. Alarm log",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 20,
+  "section": "4.4 Calibration Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p20_c03",
+  "text": "Shows the status of alarm logbook: ON or OFF. When the status is OFF, no alarm will be logged. The alarm logbook view in the Service Menu is also OFF. Run time in Hr Shows the analyzer’s running time in hours - power ON only. To browse the list in the information menu, please go up and down the list by us- ing the scrolling keys . 4.4 Calibration Menu Pressing",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 20,
+  "section": "4.4 Calibration Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p20_c04",
+  "text": "gives access to the calibration function. In the calibration menu, you can: See the sensor type selected for the analyzer (SEN1 or SEN9) Access zero, span, and artificial calibration START functions for the analyzer Set values for the test gases: zero and span Use the scrolling keys to browse the list and press to select the action to be taken, e.g. selecting Span cal.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 20,
+  "section": "4.4 Calibration Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p20_c05",
+  "text": "will start the span calibration. For further information, please see chapter 6 on calibration. 4.5 Tools Menu Pressing gives access to the Alarm manual reset function, Alarm logs and the operating system of the analyzer including Commissioning, Calibrate touch panel, and Service. Use the scrolling keys to browse the list and press to select the action to be taken.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 20,
+  "section": "4.4 Calibration Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p20_c06",
+  "text": "Alarm manual reset: When the Analyzer alarms is set ON and either H&L alarm manual reset or HH alarm manual reset is set ON, it is required to reset the relevant alarm manually.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 20,
+  "section": "4.4 Calibration Menu"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p21_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 21,
+  "section": "Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p21_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 21 To reset an alarm, enter the Tools menu and choose Alarm manual reset. Please note that an alarm will remain in operation while the alarm condition is still pre- sent. Thus it is only possible to reset an alarm when the alarm condition no longer exists. Alarm logs show all log alarms if the Alarm Logbook in Tool set-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 21,
+  "section": "Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p21_c03",
+  "text": "tings\\Commissioning\\Alarm Logbook and Analyzer Alarm in Tool set- tings\\Service (password level 1)\\Alarm setting\\Analyzer Alarm are ON. An O2 level alarm is logged only after the alarm delay runs out (default at 10 sec- onds for all three alarm levels). The alarm delay for O2 limit can be changed in the Alarm setup menu. For more details, see section 5.2.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 21,
+  "section": "Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p21_c04",
+  "text": "The failure alarms (sensor or analog output loop alarms) have no alarm delay, and are logged immediately. Data log is saved on the SD card every minute. The alarm logbook might have the following displays: O2 Low O2 low level alarm O2 High O2 high level alarm Al manual reset Alarm manual reset O2 High High O2 high high level alarm HGerr/VMerr/UNerr/IAerr/IPerr/HDerr Sensor failure Ao0 Loop",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 21,
+  "section": "Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p21_c05",
+  "text": "Open loop of analog output 1 (Ao00) Ao1 Loop Open loop of analog output 2 (Ao01) Startup: The analyzer is restarted",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 21,
+  "section": "Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p21_c06",
+  "text": "Commissioning Commissioning gives access to the settings of the basic display including Date and Time, Auto returns, and Alarm logbook. For details of these parameter set- tings, please see section 5.1. Calibrate Touch Panel The touch panel requires calibration every time the user reloads the factory set- tings. To calibrate select the Calibrate touch panel and follow the instructions on the",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 21,
+  "section": "Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p21_c07",
+  "text": "screen, i.e. hitting the cross hairs when they appear on the screen. If the touch panel is calibrated correctly, i.e. you have hit the cross hairs on the screen; the message Saved – hit the touch panel will appear. Complete the calibration by touching the panel one more time. If the touch panel is calibrated incorrectly, i.e. you have not hit all the cross",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 21,
+  "section": "Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p21_c08",
+  "text": "hairs, the display will show the message Error try again – hit the touch panel. In this case, you have to calibrate the touch panel again.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 21,
+  "section": "Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p22_c01",
+  "text": "Menu Structure",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 22,
+  "section": "Service (requires an access password)"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p22_c02",
+  "text": "22 Please note, that it can be useful to calibrate the touch panel using a small pointed object such as a pencil. However, the pointed object cannot be too sharp, and you must be careful not to push it too hard in order avoid damaging the touch screen. Service (requires an access password) Password level 1 is 9490. This gives you access to the analyzer configuration",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 22,
+  "section": "Service (requires an access password)"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p22_c03",
+  "text": "including Alarm setup and Analog input/out setup. For details of these set- tings, please see sections 5.2, 0, and 5.4. Password level 2 gives access to two other functions: Load factory settings and Load default settings. For password level 2, see the Testing & Configu- ration Sheet delivered with each analyzer. Please see the inside cover (Figure 1) for the overview of the program menu struc-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 22,
+  "section": "Service (requires an access password)"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p22_c04",
+  "text": "ture.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 22,
+  "section": "Service (requires an access password)"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p22_c05",
+  "text": "Note The Testing & Configuration Sheet is an important document. It in- cludes the factory settings as well as the password for level 2 functions. Please keep this Testing & Configuration Sheet in your files.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 22,
+  "section": "Service (requires an access password)"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p23_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 23,
+  "section": "4.6 Navigating the Menu Structure"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p23_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 23 4.6 Navigating the Menu Structure < < +/-- +/-- -- =",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 23,
+  "section": "4.6 Navigating the Menu Structure"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p23_c03",
+  "text": "Figure 4-3: Navigating the menu structure",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 23,
+  "section": "4.6 Navigating the Menu Structure"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p24_c01",
+  "text": "Configuration & Commissioning",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 24,
+  "section": "5 Configuration  & Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p24_c02",
+  "text": "24 5 Configuration & Commissioning Before starting the analyzer for the first time after completing the in- stallation, please check and confirm that all electrical connections are installed according to the instruction. After switching the power on, the analyzer readings shall be stable before starting calibration. It normally takes about five minutes to warm up. During the heating",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 24,
+  "section": "5 Configuration  & Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p24_c03",
+  "text": "up of the sensor, the Main Menu will display the oxygen content of 0.0. After several minutes, when the sensor has reached its operation temperature, the Main Menu starts displaying the actual oxygen content. 5.1 Setting of Basic Display Parameters The route for setting the basic display parameters is Tools menu\\Commissioning. Date & Time: The logbook and trend graph use cal-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 24,
+  "section": "5 Configuration  & Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p24_c04",
+  "text": "endar and clock as reference. The date and time are per default set to follow the Coordinated Universal Time (UTC). The current time is displayed in the Graph Menu. Date and Time can be set upon your requirement. However, it is recommended not to change date and time too often as it will be difficult to keep track on the historical data. Auto return [min.]: Sets the timeout period. If",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 24,
+  "section": "5 Configuration  & Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p24_c05",
+  "text": "there is no action taken during that period the system automatically reverts to the Main Menu from any- where in the functional menus (except for the Graph Menu). Default setting for auto return is 10 minutes. Minimum setting is 1 minute.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 24,
+  "section": "5 Configuration  & Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p24_c06",
+  "text": "+/-- +/-- +/--",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 24,
+  "section": "5 Configuration  & Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p24_c07",
+  "text": "Figure 5-1: Basic display settings",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 24,
+  "section": "5 Configuration  & Commissioning"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p25_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 25,
+  "section": "5.2 Setting of Alarm Limits"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p25_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 25 Alarm logbook: ON/OFF mode is set here. When the Alarm logbook is ON, the alarm logbook starts to record all of the alarms. The last 12 alarms are shown in Tools menu\\Alarm Logs. If the Alarm logbook is OFF, no alarms are saved. 5.2 Setting of Alarm Limits",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 25,
+  "section": "5.2 Setting of Alarm Limits"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p25_c03",
+  "text": "The route for setting the alarm limits is Tools menu\\Service (Password level 1: 9490)\\Alarm setup. +/-- +/-- +/-- +/-- +/--",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 25,
+  "section": "5.2 Setting of Alarm Limits"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p25_c04",
+  "text": "Figure 5-2: Settings of alarm limits",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 25,
+  "section": "5.2 Setting of Alarm Limits"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p25_c05",
+  "text": "The G36p has three alarms for oxygen level: Low Alarm level sets the low O2 level alarm – default set to 0.0 %. High Alarm level sets the high O2 level alarm – default set to 22.0 %. High-High Alarm lv sets the high O2 level alarm – default set to 25.0 %. Besides, there are other settings for alarms as follows: H&L Al. delay 1/10s sets the alarm delay for both Low and High O2 level alarms. De-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 25,
+  "section": "5.2 Setting of Alarm Limits"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p25_c06",
+  "text": "fault set to 100 (equal to 10 seconds). HH Al. delay 1/10s sets the delay for High-High O2 alarm. Default set to 100 (equal to 10 seconds). Analyzer alarms is used to turn ON/OFF the alarm function of the analyzer including analyzer failure alarm and oxygen level alarms. When the Analyzer alarms is ON and one of the alarm condition is present, the Main Menu will display the alarm message (e.g.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 25,
+  "section": "5.2 Setting of Alarm Limits"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p25_c07",
+  "text": "Alarm: Low O2) in the bottom left corner of the screen. Then, the alarm relay will be triggered after the delay period is over. For alarm relay output function and connection, please following the instruction in section 3.4.3.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 25,
+  "section": "5.2 Setting of Alarm Limits"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p26_c01",
+  "text": "Configuration & Commissioning",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 26,
+  "section": "5.3 Setting of the Analog Input"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p26_c02",
+  "text": "26 H&L alarm manual res is used to switch the manual reset function of the High or Low alarm ON/OFF. When the “H&L alarm manual res” is OFF, the High or Low alarm will disap- pear automatically when the reading of the O2 value is no longer in the alarm zone (O2 level alarms). When the “H&L alarm manual res” is ON, it is required a deliberate manual ac- tion to reset either High or Low alarm.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 26,
+  "section": "5.3 Setting of the Analog Input"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p26_c03",
+  "text": "To reset an alarm, enter Tools menu and choose Alarm manual reset. HH alarm manual res is used to switch the manual reset function of the High High alarm ON/OFF. When the “HH alarm manual res” is OFF, the High High alarm will disappear automatically when the reading of the O2 value is no longer in the alarm zone (O2 level alarms).",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 26,
+  "section": "5.3 Setting of the Analog Input"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p26_c04",
+  "text": "When the “HH alarm manual res” is ON, it is required a deliberate manual ac- tion to reset the High High alarm. To reset an alarm, enter Tools menu and choose Alarm manual reset.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 26,
+  "section": "5.3 Setting of the Analog Input"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p26_c05",
+  "text": "Note If the analyzer is intended to detect a potentially hazardous gas con- centration and the Analyzer alarms is set ON, the manual reset func- tions of the intended alarm should also be set ON in order to compli- ance with the common safety requirement. 5.3 Setting of the Analog Input The route for setting the analog input is Tools menu\\Service (Password level 1:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 26,
+  "section": "5.3 Setting of the Analog Input"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p26_c06",
+  "text": "9490)\\Analog in/out settings\\Analog input 1. Both analog inputs are not used by default. Therefore, the parameters in both ana- log input settings must not be edited. However, if the analyzer has been specifically ordered with preset analog inputs, please see Appendix 74H10.1 for more information.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 26,
+  "section": "5.3 Setting of the Analog Input"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p27_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 27,
+  "section": "5.4 Setting of Analog Outputs"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p27_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 27 5.4 Setting of Analog Outputs 5.4.1 Analog Output 1 The route for setting Analog output 1 is Tools menu\\Service (Password level 1: 9490)\\Analog in/out settings\\Analog output 1. Analog output 1 (Ao00) is connected to terminal A-OUT connection 1 & 2 with default setup to indicate the actual oxygen value in percent. +/-- +/-- +/--",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 27,
+  "section": "5.4 Setting of Analog Outputs"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p27_c03",
+  "text": "+/-- +/--",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 27,
+  "section": "5.4 Setting of Analog Outputs"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p27_c04",
+  "text": "Figure 5-3: Settings of analog output 1",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 27,
+  "section": "5.4 Setting of Analog Outputs"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p27_c05",
+  "text": "Freeze output: The freezing of the output signal after back-flushing or calibration is set up at 20 seconds by default. Analog Output Scale: The analog output signal can be scaled by editing the mini- mum and maximum values (DispMin/DispMax). The scale is freely configurable, but usually only the maximum setting is changed. The range of the output signal must correspond",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 27,
+  "section": "5.4 Setting of Analog Outputs"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p27_c06",
+  "text": "to the requirements and settings of the ex- ternal instrumentation or system. The default setting is 0.0–25.0 % oxygen (0.0 % ≙ 4 mA and 25.0 % ≙ 20 mA). This is appropriate where the external instrumen- tation is operating with an input scale of 4– 20 mA and display of 0.0–25.0 % oxygen. If however, the external instrumentation is working with an input in a different range –",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 27,
+  "section": "5.4 Setting of Analog Outputs"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p27_c07",
+  "text": "for example 0.0–10.0 % O2, i.e. 0.0 % ≙ 4 mA and 10.0 % ≙ 20 mA – then the maximum value in DispMax has to be changed – in this example to 10.0. Calibration of Analog Output Signal Calibration of the analog output signal is usually only relevant after reloading new factory/default settings. The calibration of the analog signal is carried out in one of the following ways:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 27,
+  "section": "5.4 Setting of Analog Outputs"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p28_c01",
+  "text": "Configuration & Commissioning",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 28,
+  "section": "Option 1: Input of tested values"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p28_c02",
+  "text": "28 Option 1: Input of tested values Select ZeroCalCnt and key in the value according to the ZeroCalCnt value in the Testing & Calibration Sheet attached to each specific analyzer. Press",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 28,
+  "section": "Option 1: Input of tested values"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p28_c03",
+  "text": "to save. The screen will automatically return to the Analog setup Ao00 screen. Select SpanCalCnt and key in the value according to the value in the Span- CalCnt value in the Testing & Calibration Sheet attached to each specific an- alyzer. Press to save. Option 2: Manual calibration Only if the analog signal does not function properly with the input of the tested",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 28,
+  "section": "Option 1: Input of tested values"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p28_c04",
+  "text": "values – Calibration Option 1, the analog signal shall be calibrated manually. For manual calibration of analog signal 1 (Ao00), zero test gas and instrument air shall be used. Connect a current meter with a range 4-20 mA between terminal A-OUT connec- tion 1 & 2. For zero calibration: Select DispMin. Enter the oxygen value of the zero test gas and save Introduce zero test gas to the sensor",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 28,
+  "section": "Option 1: Input of tested values"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p28_c05",
+  "text": "Select ZeroCalCnt. Then adjust and save the value to correspond with 4 mA output. Select DispMin. Change the value back to the minimum value of the scale re- quired by the external instrumentation (usually 0 % O2 – in rare cases other values). For span calibration: Select DispMax. Enter 20.9 (oxygen % in the instrument air), and save Introduce the instrument air to the sensor Select SpanCalCnt.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 28,
+  "section": "Option 1: Input of tested values"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p28_c06",
+  "text": "Then adjust and save the value to correspondent with 20mA output. Select DispMax. Change the value back to the maximum value of the scale required by the external instrumentation (usually 25 % O2 – in some cases 10 % O2 – in rare cases other values). Open Loop Monitor The function can be switched ON/OFF. The default setting is OFF. If the func-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 28,
+  "section": "Option 1: Input of tested values"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p28_c07",
+  "text": "tion is ON, there will be an alarm displayed Alarm: Loop in the Main Menu if the loop between A-OUT connection 1 & 2 is open.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 28,
+  "section": "Option 1: Input of tested values"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p29_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 29,
+  "section": "5.4.2 Analog Output 2"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p29_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 29 5.4.2 Analog Output 2 The route for setting Analog output 2 is Tools menu\\Service (Password level 1: 9490)\\Analog in/out settings\\Analog output 2. Analog output 2 (Ao01) is connected to terminal A-OUT connection 4 & 5. Ana- log output 2 is per default arranged to display the oxygen value just as Analog output 1.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 29,
+  "section": "5.4.2 Analog Output 2"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p29_c03",
+  "text": "The adjustment of settings and calibration is done as described in section 5.4.1. If ordered, Analog output 2 can be set to display Analog input 1 (Ai01). Most set- tings are done equivalently to the description in section 5.4.1 with the exception of the manual calibration of the output signal. If Analog output 2 is connected to",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 29,
+  "section": "5.4.2 Analog Output 2"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p29_c04",
+  "text": "Analog output 1 then follow these instructions for a manual calibration of the out- put signal. Connect a current meter to terminal A-OUT connection 4 & 5 for measuring the analog output 2. For zero calibration: Simulate a 4 mA current to Analog input 1. Select ZeroCalCnt. Then adjust and save the value that corresponds to 4 mA showed on the current meter connected to the analog output 2",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 29,
+  "section": "5.4.2 Analog Output 2"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p29_c05",
+  "text": "For span calibration: Simulate a 20 mA current to Analog input 1. Select SpanCalCnt. Then adjust and save the value that corresponds to 20 mA showed on the current meter connected to the analog output 2. 5.5 Back-flushing & Auto Calibration Note Not relevant for the Inert Gas Oxygen Analyzer! The back-flushing and auto calibration functions are not used by default",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 29,
+  "section": "5.4.2 Analog Output 2"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p29_c06",
+  "text": "for the Inert Gas Oxygen Analyzer. The parameters in this menu, there- fore, must not be edited. This section is only valid for the Stack Gas Oxygen Analyzer and the EGR Oxygen Analyzer. The route for setting of back-flushing and auto calibration is Tools setting\\Services (password level 1: 9490)\\Back-flushing setup.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 29,
+  "section": "5.4.2 Analog Output 2"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p30_c01",
+  "text": "Configuration & Commissioning",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 30,
+  "section": "5.6 Loading Default Settings & Factory Settings"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p30_c02",
+  "text": "30 Back-flush period is used to set the inter- val between two back-flushings. The default setting for auto back-flushing interval is 6 hours (360 minutes). There will be no back- flushing if the Back-flush period is set to 0. Back-flush duration is per default set to 30 seconds. Auto calibration is used to set the interval between two auto calibrations. By default, the",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 30,
+  "section": "5.6 Loading Default Settings & Factory Settings"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p30_c03",
+  "text": "analyzer is set for auto calibration every 24 hours (1440 minutes). There will be no auto calibration if the Auto Calibration is set to 0. Freeze output is the freezing time of output signals after calibration or back-flushing. De- fault setup is 15 seconds. This parameter can be set either here or in the setting of the Freeze output under Analog in/out setup. See section 5.4.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 30,
+  "section": "5.6 Loading Default Settings & Factory Settings"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p30_c04",
+  "text": "+/-- +/-- +/-- +/-- <",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 30,
+  "section": "5.6 Loading Default Settings & Factory Settings"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p30_c05",
+  "text": "Figure 5-4: Setting of back-flushing 5.6 Loading Default Settings & Factory Settings The route for these two functions is Tools setting\\Services (password level 2 – see configuration sheet for password). Load default settings This function makes is possible to return to the standard settings. After loading the default settings, the analyzer will restart automatically loading the default settings",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 30,
+  "section": "5.6 Loading Default Settings & Factory Settings"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p30_c06",
+  "text": "from the SD card to the analyzer. After reload default settings, please calibrate the touch panel and reset the analyzer using the Testing & Configuration Sheet at- tached to each analyzer or following the instruction in chapter 5. In case the g1parm.bin at the SD card has been deleted accidentally, please con- tact Green Instruments for resending the standard setting file. Load factory settings",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 30,
+  "section": "5.6 Loading Default Settings & Factory Settings"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p30_c07",
+  "text": "Loading factory settings should only be used under the instructions from Green Instruments. After loading factory setting, please calibrate the touch panel follow- ing the instructions in section 4.5, and load default settings following the above instuctions.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 30,
+  "section": "5.6 Loading Default Settings & Factory Settings"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p31_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 31,
+  "section": "5.7 Commissioning of the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p31_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 31 5.7 Commissioning of the Analyzer After completing the configuration, please verify the installation and setup of the analyzer with the following steps: Check that the span calibration gas is connected before span calibration; and zero calibration gas is connected before zero calibration. Calibration gases",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 31,
+  "section": "5.7 Commissioning of the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p31_c03",
+  "text": "shall be connected to the sensor without any leaking and in accordance with a good installation practice. A leaking connection will result in loss of calibra- tion gas and may result in poor calibration. In order to have the accurate re- sult, the pressure and flow rate of the sample gas should be the same as the pressure and flow rate of the calibration gasses.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 31,
+  "section": "5.7 Commissioning of the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p31_c04",
+  "text": "Check that the setup of analog output signals is correct. Check that the setup of alarm levels is correct. Check that the setup of calibration values for zero and span calibration gas is correct. Calibration can be performed when the indication of oxygen content on the Main Menu has stabilized, normally about five minutes after starting the analyzer. Cali-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 31,
+  "section": "5.7 Commissioning of the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p31_c05",
+  "text": "bration is carried out as described in the following chapter.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 31,
+  "section": "5.7 Commissioning of the Analyzer"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p32_c01",
+  "text": "Calibration",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 32,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p32_c02",
+  "text": "32 6 Calibration After completing the installation and before putting the analyzer into operation, the analyzer must be calibrated. After switching the power on, the analyzer readings shall be stable before starting calibration, which will normally take about five minutes of warm-up time. The analyzer is arranged for calibration by using certified calibration gases or in- strument air.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 32,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p32_c03",
+  "text": "In addition, the analyzer can be artificially calibrated. However, arti- ficial calibration should only be used for intermediate purposes and cannot replace manual calibration with a known and certified calibration gas.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 32,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p32_c04",
+  "text": "Note For the purpose of calibration, the signal from sensor shall be stable for at least 10 seconds. Therefore, during calibration there must not be variations in pressure or flow in the calibration gas supplied to the sen- sor. In order to have an accurate result, the pressure and flow rate of the sample gas should be the same as the pressure and flow rate of the calibration gases.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 32,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p32_c05",
+  "text": "During the calibration with known oxygen gases, press will restart the analyzer without changing any change of settings and calibration values. 6.1 Calibration with Known Oxygen Gases The zero calibration gas to be used shall be a mixture of pure nitrogen with a known amount of oxygen. The best practice of zero calibration is to use a calibra-",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 32,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p32_c06",
+  "text": "tion gas just below the target range of the application.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 32,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p33_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 33,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p33_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 33 +/-- +/--",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 33,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p33_c03",
+  "text": "Figure 6-1: Calibration menu structure and quick guide For the span calibration gas, clean dry instrument air with oxygen content of 20.9 % is recommended. Before starting to calibrate the analyzer, check the settings of zero and span gas used in the Calibration Menu. If the value of zero gas used is not correct, select Zero gas used and enter the value of the zero gas used.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 33,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p33_c04",
+  "text": "If the value of span gas used is not correct, select Span gas used, and enter the value of the span gas used. Press to go back to the Main Menu To calibrate the oxygen signal, do the following steps: Introduce zero calibration gas to the sensor, and wait for the zero value read- ing to stabilize, e.g. 1.8 %. Then enter Calibration Menu, and select Zero calibration.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 33,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p33_c05",
+  "text": "The zero calibration is completed when the analyzer returns to the Main Menu. The new calibration value will be displayed after 15 seconds (as per default setting of freeze output).",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 33,
+  "section": "6 Calibration"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p34_c01",
+  "text": "Calibration",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 34,
+  "section": "6.2 Artificial Calibration of Oxygen Signal"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p34_c02",
+  "text": "34 Introduce the span calibration gas to the sensor, and wait for the span value reading to stabilize, e.g. 21.1 %. Enter Calibration Menu, and select Span calibration. The span calibration is completed when the display returns to the Main Menu. The new calibration value will be displayed after 15 seconds (as per default setting of freeze output).",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 34,
+  "section": "6.2 Artificial Calibration of Oxygen Signal"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p34_c03",
+  "text": "The calibration should be checked according to the requirements of each applica- tion. 6.2 Artificial Calibration of Oxygen Signal The analyzer is arranged with the possibility to carry out an artificial calibration using only instrument air. Artificial calibration is carried out as follows: Apply instrument air with 20.9 % oxygen to the sensor",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 34,
+  "section": "6.2 Artificial Calibration of Oxygen Signal"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p34_c04",
+  "text": "Enter Calibration Menu, and select Artificial Calibration. The artificial cali- bration will now start calibrating first Span using the instrument air as the reference; then Zero using the reference Zero point generated by the analyzer. The calibration is completed when the analyzer returns to normal reading (i.e. 20.9 displayed on the main menu.)",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 34,
+  "section": "6.2 Artificial Calibration of Oxygen Signal"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p34_c05",
+  "text": "Note For the Stack Gas Oxygen Analyzer With the default configuration, the analyzer is automatically calibrated every 6 hours using the artificial calibration. The interval between two calibrations can be changed as described in section 5.5.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 34,
+  "section": "6.2 Artificial Calibration of Oxygen Signal"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p35_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 35,
+  "section": "7 Routine Maintenance"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p35_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 35 7 Routine Maintenance 7.1 Analyzer The analyzer is tested from the factory. The analyzer does not require any special maintenance. The LCD shall be kept clean in order to give a clear view and allow proper operation of the touch screen. The touch screen shall be cleaned using a soft damp cloth or soft tissue.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 35,
+  "section": "7 Routine Maintenance"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p35_c03",
+  "text": "Dirt and oil on the surface of the analyzer need to be removed carefully using neutral detergent and a clean rag. 7.2 Calibration The most important routine maintenance task is to calibrate the analyzer regularly. The analyzer has to be calibrated after each startup of the G36p Oxygen Analyzer. If in operation continuously, experience has shown that one calibration per week is sufficient.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 35,
+  "section": "7 Routine Maintenance"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p35_c04",
+  "text": "See chapter 6. 7.3 Sensor Warning The sensor/sensor house is hot and can cause severe burning of per- sonnel if not handle with care. Turnoff the analyzer before working with the sensor. Before removing the sensor from the sensor house, make sure that there is no over-pressure or hot sampling gas inside the sensor house.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 35,
+  "section": "7 Routine Maintenance"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p35_c05",
+  "text": "The sensor is a consumable part and needed to be changed when its life time is over. To change the sensor, following the below steps: Turn off the analyzer first; then unplug the sensor connection Loose the sensor from the sensor house, and replace it by a new sensor Plug the new sensor back to the sensor house. Then turn on the analyzer.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 35,
+  "section": "7 Routine Maintenance"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p36_c01",
+  "text": "Routine Maintenance",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 36,
+  "section": "7.4 Gas connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p36_c02",
+  "text": "36 7.4 Gas connection The calibration and sample gas connections to the sensor should always be checked and ensured no leaking. A leaking connection might result in inaccurate measuring results. Besides in order to have accurate measuring results, the gasses supplied to the sensor must have a constant flow and pressure. The pressure and flow rate of the",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 36,
+  "section": "7.4 Gas connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p36_c03",
+  "text": "sample gas should be the same as the pressure and flow rate of the calibration gas- ses.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 36,
+  "section": "7.4 Gas connection"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p37_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 37,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p37_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 37 8 Trouble Shooting Trouble-shooting should always be carried out by trained personnel. The G36p Oxygen Analyzer is connected to hazardous electric voltag- es, which can cause personal injury or mechanical damage if not handled correctly and in accordance with normal safety regulations. Trouble Possible Cause →Action",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 37,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p37_c03",
+  "text": "No display at all →Check the circuit breaker →Check the power supply – make sure that the power supply is the correct voltage →Check the ON/OFF switch at the back of the analyzer – make sure it is ON →Check the fuse on the back of the analyzer No display despite power supply and fuse is found OK The analyzer is defect → reboot, repair, or exchange the analyzer Display only indica- tion 0.0",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 37,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p37_c04",
+  "text": "No signal from sensor → check the connection both at the analyzer and sensor. Then wait several minutes and re-plug the sensor or restart the analyzer. Check the sensor temperature in Information Menu, see sec- tion 4.3. If the sensor temperature could not reach its operating temperature before it starts working, the sensor’s diagnostic status",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 37,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p37_c05",
+  "text": "will show OK, but the display only indicates 0.0 → check if the sample flow is too high. Try taking the sensor out of the sensor house and let it hang in the ambient air to see if the sensor tem- perature can reach its operating condition. Incorrect indication of oxygen level →Try to recalibrating the analyzer → If normal calibration is not working, try artificial calibration see section 6.2.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 37,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p37_c06",
+  "text": "→Check the sensor’s diagnostic status and temperature in Infor- mation Menu, see section 4.3. Check the sensor connection or re- place the sensor if it is defect Incorrect remote display and record- ing There might be a mismatch in the output range of the analyzer and the input range of the remote system →Check and correct output signal settings, see section 5.4 No trend curve Graph Menu may",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 37,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p37_c07",
+  "text": "be frozen Y-limits is set too low → reset Y-limits, see section 5.1 X-timing is set too high → restart the analyzer, reset X-timing, see section 5.1",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 37,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p38_c01",
+  "text": "Trouble Shooting",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 38,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p38_c02",
+  "text": "38 Trouble Possible Cause →Action Touch panel errors →Calibrate the touch panel, see section 4.5 No data log No historical trend curve →Check if the SD card is in position →If yes, check the SD card’s lock mode. The lock button should always be in the unlock position. →Replace the SD card if it is defect Unable to reload default settings",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 38,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p38_c03",
+  "text": "→ If the screen shows Error!! No SD card, please check the SD card inside the analyzer. Replace the SD card if it is defect. Contact Green Instruments for a new SD card with the default setting file → If the screen shows Error!! No parm file, please Contact Green Instruments to resend the default setting file. Copy the g1parm.bin to the SD card:\\bin, then try to reload default settings",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 38,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p38_c04",
+  "text": "one more time.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 38,
+  "section": "8 Trouble Shooting"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p39_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 39,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p39_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 39 9 Parts List When ordering parts, please quote the serial number of the analyzer, which you can find on the label on the back of the analyzer. Part No. Alfa-laval Part Description the specific appearance of the spare parts is subject change with- out notice; the function however will not change 404879",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 39,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p39_c03",
+  "text": "Sensor Housing for SEN9 with stay with 1/8\" BSP connection",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 39,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p39_c04",
+  "text": "1009019 Fuse 2 A (Box 10 pcs)",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 39,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p39_c05",
+  "text": "12671696 SEN9 Oxygen sensor screw-in type – with male connector",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 39,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p39_c06",
+  "text": "1479645 This Instruction/Manual",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 39,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p39_c07",
+  "text": "1256142 G36P OA 24 VDC Front Panel Mounted for IG (includes Gasket see below)",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 39,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p40_c01",
+  "text": "Parts List",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 40,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p40_c02",
+  "text": "40 1278838 Sensor cable – female connector 1.5 m",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 40,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p40_c03",
+  "text": "14310172 SD card with Green Instruments’ software 2.14.1 & standard settings files Please inform the serial number of the ana- lyzer when you order an SD card. Remark the software is special updated for Alfa laval",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 40,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p40_c04",
+  "text": "Other optional equipment – e.g. pressure transmitter, remote digital display, signal amplifier for logarithmic output, flow alarm, visualization, recording and data logging, monitoring of gas temperature, pressure, and load – can be supplied.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 40,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p40_c05",
+  "text": "Note All spare parts must be stored in the original packaging at a dry place. The maximum storage time of the sensor is 2 years. Storage temperature: -15 oC…55 oC",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 40,
+  "section": "9 Parts List"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p41_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 41,
+  "section": "10 Appendix"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p41_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 41 10 Appendix 10.1 Setting of Analog Input The analog inputs are not in use by default. If however, the analyzer has been spe- cifically ordered with preset analog inputs they are set accordingly. See the specif- ic arrangement in the Testing & Configuration Sheet.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 41,
+  "section": "10 Appendix"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p41_c03",
+  "text": "The two analog input signals of the G36p can be configured for most input re- quirements such as pressure, temperature, flow and opacity. The analyzer can be optional arranged with one or both analog inputs. For the analyzer with pressure compensation module, Analog Input 1 is per default setup for pressure transmitter. The analog input signal can also be configured to be displayed on the Main",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 41,
+  "section": "10 Appendix"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p41_c04",
+  "text": "Menu. See Figure 10-1 for details of the Main Menu the analog input is in use. 1 2 3",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 41,
+  "section": "10 Appendix"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p41_c05",
+  "text": "Figure 10-1: Main menu if the analog input is agreed to be used Position 1: Display of Analog input 1 (e.g. pressure in kPa) Position 2: Current oxygen value in percent Position 3: Display of the current alarm (e.g. Alarm of open analog output loop) – if there is no alarm, there will be no display here. The route for setting of the analog input is Tools menu\\Service (Password level 1:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 41,
+  "section": "10 Appendix"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p41_c06",
+  "text": "9490)\\Analog in/out settings\\Analog input 1. Freeze output No setting is required for this parameter. The default setting is 15 seconds.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 41,
+  "section": "10 Appendix"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p42_c01",
+  "text": "Appendix",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 42,
+  "section": "Analog Input Scale"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p42_c02",
+  "text": "42 Analog Input Scale The analog input signal should be 4-20 mA. The display range of the input signal is from 0.0 to 999.9. The input signal can be scaled freely within this range by editing the minimum and maximum display (DispMin/DispMax). The minimum display is correspondent to a signal of 4 mA. The maximum display is correspondent to a signal of 20 mA. Calibration of the analog input signal",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 42,
+  "section": "Analog Input Scale"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p42_c03",
+  "text": "The route for calibration of the analog input is Tools menu\\Service (Password level 1: 9490)\\Analog in/out settings\\Analog input 1. This procedure should usually only be relevant after reloading the factory settings. The calibration of analog input signal is carried out in one of the following ways: Option 1: Input of tested values",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 42,
+  "section": "Analog Input Scale"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p42_c04",
+  "text": "Select ZeroCalCnt and key in the value according to the ZeroCalCnt value in the Testing & Configuration Sheet attached to each specific monitor. Press to save. The screen will automatically come back to the Analog setup Ai01 screen. Then, Select SpanCalCnt, and key in the value according to the value in the SpanCalCnt value in the Testing & Configuration Sheet attached to each specific monitor.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 42,
+  "section": "Analog Input Scale"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p42_c05",
+  "text": "Press to save. Option 2: Manual calibration Do the manual calibration of analog signal only if the analog signal does not func- tion properly with the input of the tested values (Option 1). The manual calibration of analog input signal requires you to go back and forth between the Analog setup Ai01 screen and the Main Menu. For zero calibration:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 42,
+  "section": "Analog Input Scale"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p42_c06",
+  "text": "Simulate a current of 4 mA to the analog input terminal. Select ZeroCalCnt and adjust the value in ZeroCalCnt until value of analog input Ai01 in the Main display equal to the MinDisp value. Then save the new value of ZeroCalCnt. For span calibration: Simulate a current of 20 mA to the analog input terminal.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 42,
+  "section": "Analog Input Scale"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p43_c01",
+  "text": "G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 43,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p43_c02",
+  "text": "Version 2.11 – Revision December 2020 – Part 1479645 (01381-AL) 43 Select SpanCalCnt, and adjust the value in SpanCalCnt until value of ana- log input Ai01 in the Main display equal to the MaxDisp value. Save the new value of SpanCalCnt. Open Loop Monitor No setting is required for this parameter. The default setting is OFF and shall not be changed.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 43,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p43_c03",
+  "text": "10.2 Cutout Dimensions",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 43,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p43_c04",
+  "text": "Figure 10-2: Cutout dimensions for G36p Oxygen Analyzer",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 43,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p44_c01",
+  "text": "44 Updated for Alfa Laval 12/3/2019 Update software version 2.14 (2.141) mrna Page 13 gives an overview for different digital outputs. On request of Alfa Laval these outputs are changed to: The analyzer is arranged with four relay outputs connected to D-OUT with 12 terminals. It is important to note that the configuration of the analyzer might deviate from the configurations listed below.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 44,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p44_c02",
+  "text": "Please see the Testing & Configuration Sheet that is attached to each analyzer. The default relay functions and connections of the Inert Gas Oxygen Analyzer are as follows:",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 44,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p44_c03",
+  "text": "Relay No. Relay function Terminal Connections Relay 1 Alarm Low O2 level Terminals 1.1-2.1-3.1 (NC-COM-NO) Inverted Normally energized Relay 2 Alarm High O2 level Terminals 4.2-5.2-6.2 (NC-COM-NO) Inverted Normally energized Relay 3 Alarm High High O2 level Terminals 7.3-8.3-9.3 (NC-COM-NO) Inverted Normally energized Relay 4 System Failure alarm Terminals 10.4-11.4-12.4 (NC-COM-NO) Normally",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 44,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p44_c04",
+  "text": "de-energized The values for Low-, High- and High High O2 alarms are indicated on the Alarm and safety table if applicable.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 44,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p45_c01",
+  "text": "Contact Green Instruments for more information about monitoring & protection systems",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 45,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p45_c02",
+  "text": "GREEN INSTRUMENTS A/S Erhvervsparken 29 • DK-9700 Brønderslev • Denmark Tel.: +45 96 45 45 00 • Fax: +45 96 45 45 01 www.greeninstruments.com",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 45,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p45_c03",
+  "text": "© 2013 by Green Instruments A/S. All rights reserved.",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 45,
+  "section": "Open Loop Monitor"
+ },
+ {
+  "id": "OPERATING_MANUAL_SMIT7000_1479645_01381-AL__p45_c04",
+  "text": "Perfecting Sensible Technology",
+  "source": "OPERATING MANUAL SMIT7000 1479645 (01381-AL).pdf",
+  "page": 45,
+  "section": "Open Loop Monitor"
+ }
 ]
