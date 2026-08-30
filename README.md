@@ -13,7 +13,7 @@
 
 로컬 Gradio 앱 외에, **각 사용자의 브라우저가 자기 PC의 Ollama를 직접 호출**하는 정적 웹 데모도 제공합니다(`web/`).
 
-- **배포 주소**: https://cjwmanelf.github.io/MARINE-RAG/  *(Pages 활성화 후 유효)*
+- **배포 주소(라이브)**: ✅ https://cjwmanelf.github.io/MARINE-RAG/
 - **구조**: 브라우저에서 임베딩(transformers.js `multilingual-e5-small`)+코사인 검색 → 사용자 로컬 Ollama(`qwen3.5:2b`, `think:false`) 직호출 → 폐쇄형 답변·`[출처]` 인용
 - **근거 데이터**: 공개용 **합성 샘플 매뉴얼**(`web/public/chunks.json`) — 실제 보안 매뉴얼 아님
 
