@@ -1,6 +1,12 @@
-// 로컬 Ollama 직접 호출 (사용자 브라우저 → localhost:11434)
-export const OLLAMA_HOST = 'http://localhost:11434'
+// 로컬 Ollama 호출 (사용자 브라우저 → localhost)
+export const OLLAMA_DIRECT = 'http://localhost:11434' // Ollama 기본
+export const OLLAMA_PROXY = 'http://localhost:11435' // ollama-proxy.mjs (배포 HTTPS→로컬 PNA 우회)
 export const LLM_MODEL = 'qwen3.5:2b'
+// 배포(HTTPS)면 프록시 우선(직접은 PNA로 막힘), 로컬(HTTP)이면 직접 우선(프록시 불필요)
+const HOSTS =
+  typeof location !== 'undefined' && location.protocol === 'https:'
+    ? [OLLAMA_PROXY, OLLAMA_DIRECT]
+    : [OLLAMA_DIRECT, OLLAMA_PROXY]
 
 const SYSTEM_PROMPT =
   "당신은 선박기기 매뉴얼 안내 도우미입니다. 아래 '근거'에 있는 내용만 사용해 한국어로 답하세요.\n" +
@@ -26,25 +32,33 @@ export function buildMessages(query, hits) {
 }
 
 // think:false → qwen3.5 추론 모델이 답을 thinking에만 쏟고 content를 비우는 문제 방지
+async function openChat(messages) {
+  const body = JSON.stringify({ model: LLM_MODEL, messages, stream: true, think: false })
+  let lastErr
+  for (const host of HOSTS) {
+    try {
+      const res = await fetch(host + '/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      })
+      if (res.ok) return res
+      if (res.status === 404) throw new Error(`MODEL: 모델을 찾을 수 없습니다. \`ollama pull ${LLM_MODEL}\``)
+      lastErr = new Error(`Ollama ${res.status}`)
+    } catch (e) {
+      if (String(e.message || '').startsWith('MODEL')) throw e
+      lastErr = e
+    }
+  }
+  throw new Error(
+    'CONN: 로컬 Ollama에 연결하지 못했습니다.\n' +
+      '· 로컬(HTTP) 실행: Ollama 실행 + `ollama pull qwen3.5:2b`\n' +
+      '· 배포(HTTPS) 사이트: 위에 더해 `node web/ollama-proxy.mjs` 실행 필요(브라우저 PNA 우회, README 참고)'
+  )
+}
+
 export async function* chatStream(messages) {
-  let res
-  try {
-    res = await fetch(OLLAMA_HOST + '/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: LLM_MODEL, messages, stream: true, think: false }),
-    })
-  } catch (e) {
-    throw new Error(
-      'CONN: 로컬 Ollama에 연결하지 못했습니다. Ollama 실행 + `ollama pull qwen3.5:2b` + ' +
-        '이 페이지 출처를 OLLAMA_ORIGINS에 허용했는지 확인하세요.'
-    )
-  }
-  if (!res.ok) {
-    const t = await res.text().catch(() => '')
-    if (res.status === 404) throw new Error(`MODEL: 모델을 찾을 수 없습니다. \`ollama pull ${LLM_MODEL}\``)
-    throw new Error(`Ollama ${res.status}: ${t.slice(0, 200)}`)
-  }
+  const res = await openChat(messages)
   const reader = res.body.getReader()
   const dec = new TextDecoder()
   let buf = ''

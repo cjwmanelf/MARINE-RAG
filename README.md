@@ -19,22 +19,26 @@
 
 **사용 조건 (숨기지 않습니다)**
 1. 본인 PC에서 **Ollama 실행 + `ollama pull qwen3.5:2b`**
-2. **첫 방문**에 임베딩 모델(수백 MB)이 브라우저로 다운로드됨 — 잠시 대기
-3. Pages 출처에서 Ollama 호출은 **CORS 허용** 필요(로컬 `localhost`는 기본 허용). Windows 예:
-   `setx OLLAMA_ORIGINS "https://cjwmanelf.github.io"` → **Ollama 재시작**
-4. 연결 실패 시 답변 영역에 원인·재시도 방법이 표시됨(페이지 오류와 구분)
-5. ⚠️ **알려진 한계 — HTTPS 배포 → 로컬 HTTP Ollama**: 배포된 **HTTPS**(GitHub Pages) 페이지에서 **HTTP** 로컬 Ollama 호출은 브라우저의 **Private Network Access/혼합콘텐츠** 정책에 막힐 수 있습니다(`net::ERR_BLOCKED_BY_CLIENT`). Ollama가 PNA 허용 헤더를 보내지 않아 **CORS(OLLAMA_ORIGINS)로도 해결되지 않습니다.** 브라우저가 PNA를 강제하면 배포 사이트에서 **생성이 막히고**(UI·검색은 정상), 경고 모드면 동작할 수 있습니다(브라우저·버전에 따라 다름).
+2. **첫 방문**에 임베딩 모델(수백 MB)이 브라우저로 다운로드됨 — 잠시 대기 (임베딩·검색은 설정 없이 동작)
+3. 답변 **생성**은 아래 (A) 또는 (B):
 
-**✅ 로컬 Ollama와 확실히 동작하는 방법(권장)** — HTTP로 로컬 서빙하면 위 장벽이 없습니다(검증됨):
+**(A) 배포(HTTPS) 사이트에서 생성 — PNA 우회 프록시 실행**
+HTTPS 페이지가 HTTP 로컬 Ollama를 직접 부르면 브라우저 **PNA(Private Network Access)** 정책에 막힙니다(`net::ERR_BLOCKED_BY_CLIENT`; Ollama가 PNA 허용 헤더를 안 줘 **CORS로도 해결 안 됨**). 그래서 **PNA/CORS 헤더를 붙여 Ollama로 전달하는 초소형 프록시**를 함께 실행합니다(의존성 0):
 ```bash
-cd web
-npm install
-npm run build && npm run preview   # http://localhost:4173 → 검색+생성+인용 완전 동작
-# 개발용: npm run dev               # http://localhost:5173
+# Ollama가 실행 중인 상태에서
+node web/ollama-proxy.mjs      # http://localhost:11435 → Ollama(11434)로 전달, PNA 헤더 추가
 ```
-> 배포(HTTPS) 사이트는 **UI·검색 데모 + 로컬 실행 안내** 용도이며, 실제 답변 생성은 위 로컬 HTTP 실행을 권장합니다.
+→ 배포 사이트가 **자동으로 이 프록시를 통해** 생성합니다(HTTPS면 프록시 우선). `OLLAMA_ORIGINS` 불필요(프록시가 서버-사이드로 Ollama 호출).
 
-> 배포 확인 순서: ① 주소 열기 → ② 본인 Ollama 실행·모델 준비 → ③ 첫 방문 임베딩 다운로드 대기 → ④ (Pages면) OLLAMA_ORIGINS 허용 후 소개 질문·자료 밖 질문 각각 입력해 자산 로드·모델 연결·출처/거부 확인.
+**(B) 로컬(HTTP)로 실행 — 프록시 불필요**
+```bash
+cd web && npm install && npm run build && npm run preview   # http://localhost:4173
+# 개발용: npm run dev                                        # http://localhost:5173
+```
+→ HTTP↔HTTP라 PNA 장벽이 없어 직접 동작합니다(검증됨).
+
+> 연결 실패 시 답변 영역에 원인·재시도 방법이 표시됩니다(페이지 오류와 구분).
+> 배포 확인 순서: ① 주소 열기 → ② Ollama+모델 준비 → ③ 첫 방문 임베딩 다운로드 대기 → ④ (배포 사이트면) `node web/ollama-proxy.mjs` 실행 → ⑤ 소개 질문·자료 밖 질문 입력해 출처/거부 확인.
 
 ## ✨ 기능
 
