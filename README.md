@@ -16,6 +16,7 @@
 - **배포 주소(라이브)**: ✅ https://cjwmanelf.github.io/MARINE-RAG/
 - **구조**: 브라우저에서 임베딩(transformers.js `multilingual-e5-small`)+코사인 검색 → 사용자 로컬 Ollama(`qwen3.5:2b`, `think:false`) 직호출 → 폐쇄형 답변·`[출처]` 인용
 - **근거 데이터**: 공개용 **합성 샘플 매뉴얼**(`web/public/chunks.json`) — 실제 보안 매뉴얼 아님
+  - 색인앱(`app.py`)으로 만든 실제 세트를 웹 데모에 실으려면: `python tools/chunks_to_web.py <세트>` → `web/public/chunks.json` 갱신 → 재빌드/배포. (`indexes/<세트>/chunks.jsonl` → 웹 형식 변환. ⚠️ **공개 배포는 공개 가능한 자료만**)
 
 **사용 조건 (숨기지 않습니다)**
 1. 본인 PC에서 **Ollama 실행 + `ollama pull qwen3.5:2b`**
