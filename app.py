@@ -31,6 +31,7 @@ os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "0"
 import re
 import json
 import shutil
+import subprocess
 import logging
 import urllib.request
 import urllib.error
@@ -1105,6 +1106,81 @@ def chat_respond(message, history, set_name, text_threshold, img_threshold,
 
 
 # ---------------------------------------------------------------------------
+# 웹 데모 배포 (색인 세트 → web/public/chunks.json → git push → GitHub Pages)
+# ---------------------------------------------------------------------------
+WEB_CHUNKS = BASE_DIR / "web" / "public" / "chunks.json"
+DEPLOY_URL = "https://cjwmanelf.github.io/MARINE-RAG/"
+
+
+def convert_set_to_web(set_name: str) -> int:
+    """색인 세트의 chunks.jsonl → web/public/chunks.json 변환. 반환: 청크 수."""
+    jl = INDEXES_DIR / safe_set_name(set_name) / "chunks.jsonl"
+    if not jl.exists():
+        raise FileNotFoundError(f"{jl} 없음 — '텍스트 색인'을 포함해 먼저 색인하세요.")
+    recs = []
+    with open(jl, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            c = json.loads(line)
+            t = (c.get("text") or "").strip()
+            if not t:
+                continue
+            recs.append({
+                "id": c.get("id"),
+                "text": t,
+                "source": c.get("source_file") or set_name,
+                "page": c.get("page"),
+                "section": c.get("section") or "[검증 필요]",
+            })
+    if not recs:
+        raise ValueError("변환할 청크가 없습니다.")
+    WEB_CHUNKS.parent.mkdir(parents=True, exist_ok=True)
+    with open(WEB_CHUNKS, "w", encoding="utf-8") as f:
+        json.dump(recs, f, ensure_ascii=False, indent=1)
+    return len(recs)
+
+
+def web_convert_deploy(set_name, do_push):
+    """버튼 핸들러: 세트 → web/public/chunks.json (+ 확인 체크 시 git push로 공개 배포)."""
+    if not set_name:
+        return "⚠️ 세트를 선택하세요."
+    out = []
+    try:
+        n = convert_set_to_web(set_name)
+    except Exception as e:  # noqa: BLE001
+        return f"❌ 변환 실패: {e}"
+    out.append(f"✅ 변환: {n}개 청크 → web/public/chunks.json")
+
+    if not do_push:
+        out.append("ℹ️ 공개 배포는 건너뜀(확인 체크 안 함).")
+        out.append("   로컬 확인:  cd web && npm run preview  → http://localhost:4173")
+        return "\n".join(out)
+
+    def run(cmd):
+        return subprocess.run(cmd, cwd=str(BASE_DIR), shell=True,
+                              capture_output=True, text=True, encoding="utf-8", errors="replace")
+
+    run("git add web/public/chunks.json")
+    c = run('git commit -m "data: update web demo chunks"')
+    blob = (c.stdout or "") + (c.stderr or "")
+    if c.returncode != 0 and "nothing to commit" in blob:
+        out.append("ℹ️ 변경 없음(이미 최신) — 배포 생략.")
+        return "\n".join(out)
+    if c.returncode != 0:
+        out.append(f"❌ commit 실패:\n{blob[-400:]}")
+        return "\n".join(out)
+    p = run("git push")
+    if p.returncode != 0:
+        out.append(f"❌ push 실패(원격 권한/네트워크 확인):\n{((p.stderr or p.stdout) or '')[-400:]}")
+        return "\n".join(out)
+    out.append("🚀 git push 완료 → GitHub Actions가 재배포합니다(수 분 후 반영).")
+    out.append(f"배포 주소: {DEPLOY_URL}")
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------------------
 # Gradio UI
 # ---------------------------------------------------------------------------
 def build_ui():
@@ -1289,6 +1365,33 @@ def build_ui():
                 fn=lambda cur: gr.update(choices=list_index_sets(), value=cur),
                 inputs=[set_dropdown],
                 outputs=[set_dropdown],
+            )
+
+        with gr.Tab("🚀 웹 데모 배포"):
+            gr.Markdown(
+                "색인한 세트를 **웹 데모 데이터**로 변환하고 **공개 배포**합니다.\n\n"
+                "⚠️ **공개 배포 = 인터넷 공개.** 실제 보안 매뉴얼은 올리지 마세요(공개 가능한 자료만).\n"
+                "→ 배포 주소: https://cjwmanelf.github.io/MARINE-RAG/"
+            )
+            _dsets = list_index_sets()
+            with gr.Row():
+                deploy_set = gr.Dropdown(
+                    label="세트 선택", choices=_dsets,
+                    value=(_dsets[0] if _dsets else None), scale=4,
+                )
+                deploy_refresh = gr.Button("🔄 목록 새로고침", scale=1)
+            deploy_confirm = gr.Checkbox(
+                label="⚠️ 이 세트를 공개 배포합니다 (공개 가능한 자료임을 확인) — 해제 시 로컬 변환만",
+                value=False,
+            )
+            deploy_btn = gr.Button("웹 데모로 변환 + 배포", variant="primary")
+            deploy_status = gr.Textbox(label="결과", lines=8, interactive=False)
+            deploy_btn.click(
+                fn=web_convert_deploy, inputs=[deploy_set, deploy_confirm], outputs=[deploy_status]
+            )
+            deploy_refresh.click(
+                fn=lambda cur: gr.update(choices=list_index_sets(), value=cur),
+                inputs=[deploy_set], outputs=[deploy_set],
             )
 
         # 색인 완료 시: 결과 메시지 출력 + 검색 탭 드롭다운 갱신(방금 만든 세트 선택)

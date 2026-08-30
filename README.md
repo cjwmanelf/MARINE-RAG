@@ -37,7 +37,10 @@
 - **배포 주소(라이브)**: ✅ https://cjwmanelf.github.io/MARINE-RAG/
 - **구조**: 브라우저에서 임베딩(transformers.js `multilingual-e5-small`)+코사인 검색 → 사용자 로컬 Ollama(`qwen3.5:2b`, `think:false`) 직호출 → 폐쇄형 답변·`[출처]` 인용
 - **근거 데이터**: 공개용 **합성 샘플 매뉴얼**(`web/public/chunks.json`) — 실제 보안 매뉴얼 아님
-  - 색인앱(`app.py`)으로 만든 실제 세트를 웹 데모에 실으려면: `python tools/chunks_to_web.py <세트>` → `web/public/chunks.json` 갱신 → 재빌드/배포. (`indexes/<세트>/chunks.jsonl` → 웹 형식 변환. ⚠️ **공개 배포는 공개 가능한 자료만**)
+  - 색인앱으로 만든 실제 세트를 웹 데모에 실으려면 **두 방법**:
+    - **앱 버튼(간편)**: `app.py`의 **🚀 웹 데모 배포** 탭 → 세트 선택 → (공개 배포는 확인 체크) → 버튼 클릭 = 변환 + `git push`까지 자동.
+    - **명령줄**: `python tools/chunks_to_web.py <세트>` → `web/public/chunks.json` 갱신 → 재빌드/배포.
+    - `indexes/<세트>/chunks.jsonl` → 웹 형식 변환. ⚠️ **공개 배포는 공개 가능한 자료만**
 
 **사용 조건 (숨기지 않습니다)**
 1. 본인 PC에서 **Ollama 실행 + `ollama pull qwen3.5:2b`**
@@ -77,6 +80,7 @@ cd web && npm install && npm run build && npm run preview   # http://localhost:4
 | 📁 색인 생성 | PDF 드래그앤드롭 → 이미지+텍스트 색인, 세트별 관리(추가/덮어쓰기) |
 | 🔍 하이브리드 검색 | 질의어로 도면·표 + 본문 동시 검색, 출처·페이지 표시 |
 | 💬 챗봇 (RAG) | 근거 기반 답변 생성, 인용·연관 근거·그림, 멀티턴 토글 |
+| 🚀 웹 데모 배포 | 색인 세트를 웹 데이터로 변환 + (확인 시) 공개 배포까지 버튼 하나로 |
 
 ## ⚙️ 구성
 
