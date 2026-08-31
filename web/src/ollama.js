@@ -1,8 +1,7 @@
-// 로컬 Ollama 호출 (사용자 브라우저 → localhost)
-export const OLLAMA_DIRECT = 'http://localhost:11434' // Ollama 기본
+// 로컬 Ollama 호출 (스트리밍 생성 + 취소 + LLM-as-Judge)
+export const OLLAMA_DIRECT = 'http://localhost:11434'
 export const OLLAMA_PROXY = 'http://localhost:11435' // ollama-proxy.mjs (배포 HTTPS→로컬 PNA 우회)
 export const LLM_MODEL = 'qwen3.5:2b'
-// 배포(HTTPS)면 프록시 우선(직접은 PNA로 막힘), 로컬(HTTP)이면 직접 우선(프록시 불필요)
 const HOSTS =
   typeof location !== 'undefined' && location.protocol === 'https:'
     ? [OLLAMA_PROXY, OLLAMA_DIRECT]
@@ -16,24 +15,38 @@ const SYSTEM_PROMPT =
   '3) 원문에 없는 평가·추측·수치·일반지식을 더하지 마세요.\n' +
   '4) 안전·정비 관련은 최종 판단을 담당 기관사와 원문 페이지 확인에 맡기도록 안내하세요.'
 
-export function buildMessages(query, hits) {
-  const ctx = hits
-    .map((h, i) => `(${i + 1}) [출처 ${h.chunk.source} · p${h.chunk.page}] ${h.chunk.text}`)
+const JUDGE_PROMPT =
+  "당신은 RAG 답변의 '근거성'을 판정하는 심판입니다. 아래 [근거]와 [답변]만 보고 판정하세요.\n" +
+  '- grounded: 답변의 핵심 내용이 근거로 확인됨\n' +
+  '- partial: 일부만 근거로 확인됨\n' +
+  '- ungrounded: 근거에 없는 내용을 말함\n' +
+  "- refusal: 답변이 '확인되지 않습니다' 류의 거절\n" +
+  '반드시 JSON 한 줄로만: {"verdict":"grounded|partial|ungrounded|refusal","reason":"한 줄 이유"}'
+
+function evidenceBlock(hits) {
+  return hits
+    .map((h, i) => {
+      const c = h.chunk
+      const sec = c.section && c.section !== '[검증 필요]' ? ` · ${c.section}` : ''
+      return `(${i + 1}) [출처 ${c.source} · p${c.page}${sec}] ${c.text}`
+    })
     .join('\n')
+}
+
+export function buildMessages(query, hits) {
   return [
     { role: 'system', content: SYSTEM_PROMPT },
     {
       role: 'user',
       content:
-        `[근거]\n${ctx}\n\n[질문]\n${query}\n\n` +
+        `[근거]\n${evidenceBlock(hits)}\n\n[질문]\n${query}\n\n` +
         '[답변] 위 근거만 사용해 한국어로 답하고, 각 문장 끝에 해당 출처 태그를 붙이세요.',
     },
   ]
 }
 
-// think:false → qwen3.5 추론 모델이 답을 thinking에만 쏟고 content를 비우는 문제 방지
-async function openChat(messages) {
-  const body = JSON.stringify({ model: LLM_MODEL, messages, stream: true, think: false })
+async function ollamaFetch(payloadObj, signal) {
+  const body = JSON.stringify(payloadObj)
   let lastErr
   for (const host of HOSTS) {
     try {
@@ -41,11 +54,13 @@ async function openChat(messages) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body,
+        signal,
       })
       if (res.ok) return res
       if (res.status === 404) throw new Error(`MODEL: 모델을 찾을 수 없습니다. \`ollama pull ${LLM_MODEL}\``)
       lastErr = new Error(`Ollama ${res.status}`)
     } catch (e) {
+      if (e.name === 'AbortError') throw e
       if (String(e.message || '').startsWith('MODEL')) throw e
       lastErr = e
     }
@@ -53,12 +68,13 @@ async function openChat(messages) {
   throw new Error(
     'CONN: 로컬 Ollama에 연결하지 못했습니다.\n' +
       '· 로컬(HTTP) 실행: Ollama 실행 + `ollama pull qwen3.5:2b`\n' +
-      '· 배포(HTTPS) 사이트: 위에 더해 `node web/ollama-proxy.mjs` 실행 필요(브라우저 PNA 우회, README 참고)'
+      '· 배포(HTTPS) 사이트: 위에 더해 `node web/ollama-proxy.mjs` 실행(브라우저 PNA 우회, README 참고)'
   )
 }
 
-export async function* chatStream(messages) {
-  const res = await openChat(messages)
+// think:false → 추론 모델이 thinking에만 답을 쏟고 content를 비우는 문제 방지. signal로 취소 가능.
+export async function* chatStream(messages, signal) {
+  const res = await ollamaFetch({ model: LLM_MODEL, messages, stream: true, think: false }, signal)
   const reader = res.body.getReader()
   const dec = new TextDecoder()
   let buf = ''
@@ -82,4 +98,34 @@ export async function* chatStream(messages) {
       if (obj?.done) return
     }
   }
+}
+
+// LLM-as-a-Judge: 답변이 근거에 뒷받침되는지 자동 판정. 반환 {verdict, reason}.
+export async function judgeAnswer(query, hits, answer) {
+  const msgs = [
+    { role: 'system', content: JUDGE_PROMPT },
+    {
+      role: 'user',
+      content: `[근거]\n${evidenceBlock(hits)}\n\n[질문]\n${query}\n\n[답변]\n${answer}\n\nJSON 한 줄로만 판정:`,
+    },
+  ]
+  let txt = ''
+  try {
+    const res = await ollamaFetch({ model: LLM_MODEL, messages: msgs, stream: false, think: false })
+    const data = await res.json()
+    txt = data?.message?.content || ''
+  } catch {
+    return { verdict: 'unknown', reason: '판정 실패(연결)' }
+  }
+  const m = txt.match(/\{[\s\S]*\}/)
+  if (m) {
+    try {
+      const o = JSON.parse(m[0])
+      if (o.verdict) return { verdict: String(o.verdict).toLowerCase(), reason: o.reason || '' }
+    } catch {
+      /* fall through */
+    }
+  }
+  const k = (txt.toLowerCase().match(/grounded|partial|ungrounded|refusal/) || ['unknown'])[0]
+  return { verdict: k, reason: txt.slice(0, 80) }
 }

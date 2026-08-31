@@ -15,10 +15,21 @@
       .msg.user { align-self: flex-end; background: #2563eb; color: #fff; max-width: 85%; }
       .msg.bot { align-self: flex-start; background: #f1f5f9; color: #0f172a; max-width: 95%; }
       .msg.bot.err { background: #fef2f2; color: #b91c1c; }
+      .meta { align-self: flex-start; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: -2px 0 4px; max-width: 95%; }
+      .chip { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+      .chip.gen { background: #e2e8f0; color: #475569; }
+      .chip.grounded { background: #dcfce7; color: #166534; }
+      .chip.partial { background: #fef9c3; color: #854d0e; }
+      .chip.ungrounded { background: #fee2e2; color: #b91c1c; }
+      .chip.refusal { background: #e0e7ff; color: #3730a3; }
+      .chip.unknown, .chip.judging { background: #f1f5f9; color: #64748b; }
+      .fb button { font-size: 12px; border: 1px solid #cbd5e1; background: transparent; border-radius: 6px; padding: 1px 7px; cursor: pointer; color: inherit; }
+      .fb button.on { background: #2563eb; color: #fff; border-color: #2563eb; }
       .row { display: flex; gap: 8px; margin-top: 10px; }
       #q { flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; }
-      #send { padding: 10px 18px; border: 0; border-radius: 8px; background: #2563eb; color: #fff; font-size: 1rem; cursor: pointer; }
-      #send:disabled { background: #94a3b8; cursor: not-allowed; }
+      #send, #stop { padding: 10px 18px; border: 0; border-radius: 8px; color: #fff; font-size: 1rem; cursor: pointer; }
+      #send { background: #2563eb; } #send:disabled { background: #94a3b8; cursor: not-allowed; }
+      #stop { background: #dc2626; display: none; }
       details { margin-top: 12px; }
       .src { border-left: 3px solid #cbd5e1; padding: 6px 10px; margin: 8px 0; font-size: .88rem; color: #334155; }
       .usage { margin-top: 18px; font-size: .85rem; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; }
@@ -27,19 +38,20 @@
         #status { background:#1e293b; color:#cbd5e1; } #chat { border-color:#334155; }
         .msg.bot { background:#1e293b; color:#e2e8f0; } #q { background:#0f172a; color:#e2e8f0; border-color:#334155; }
         .usage { background:#0f172a; border-color:#334155; color:#94a3b8; } .usage code { background:#334155; }
-        .sub { color:#94a3b8; }
+        .sub { color:#94a3b8; } .chip.gen{background:#334155;color:#cbd5e1;} .fb button{border-color:#334155;}
       }
     </style>
   </head>
   <body>
     <h1>🚢 선박기기 매뉴얼 RAG 안내 챗봇 <span style="font-size:.8rem;color:#64748b">(웹 데모)</span></h1>
-    <div class="sub">매뉴얼 <b>근거 안에서만</b> 답합니다(폐쇄형). 답변에는 <code>[출처 파일 · p쪽]</code> 인용이 붙고, 근거가 없으면 "확인되지 않습니다"로 답합니다.</div>
+    <div class="sub">매뉴얼 <b>근거 안에서만</b> 답합니다(폐쇄형). 답변엔 <code>[출처 파일 · p쪽]</code> 인용 + <b>자동 근거 판정</b>이 붙고, 근거가 없으면 "확인되지 않습니다"로 답합니다.</div>
 
     <div id="status">로딩 중…</div>
     <div id="chat"></div>
     <div class="row">
       <input id="q" placeholder="예: 센서 교체 주기는? / oxygen sensor calibration" />
       <button id="send" disabled>전송</button>
+      <button id="stop">중지</button>
     </div>
 
     <details open>
@@ -50,11 +62,10 @@
     <section class="usage">
       <b>⚙️ 사용 조건 (숨기지 않습니다)</b>
       <ol style="margin:6px 0 0; padding-left:20px">
-        <li>답변 생성은 <b>사용자 본인 PC의 Ollama</b>가 담당합니다 — <code>ollama pull qwen3.5:2b</code> 후 Ollama 실행 중이어야 합니다.</li>
-        <li><b>첫 방문</b>에는 임베딩 모델(다국어 소형, 수백 MB)이 브라우저로 다운로드됩니다. 잠시 기다려 주세요.</li>
-        <li>이 페이지(예: GitHub Pages) 출처에서 Ollama를 호출하려면 <b>CORS 허용</b>이 필요합니다:
-          <code>OLLAMA_ORIGINS</code>에 이 페이지 주소를 추가한 뒤 Ollama를 재시작하세요.</li>
-        <li>연결 실패 시 답변 영역에 <b>원인·재시도 방법</b>이 표시됩니다(페이지 오류와 구분).</li>
+        <li>답변 생성은 <b>사용자 본인 PC의 Ollama</b>가 담당합니다 — <code>ollama pull qwen3.5:2b</code> 후 Ollama 실행.</li>
+        <li><b>첫 방문</b>에 임베딩 모델(수백 MB)이 브라우저로 다운로드됩니다(진행률 표시). 이후 브라우저 캐시.</li>
+        <li>배포(HTTPS) 사이트에서 생성하려면 <code>node web/ollama-proxy.mjs</code> 실행(브라우저 PNA 우회). 로컬 <code>npm run preview</code>는 불필요.</li>
+        <li><b>자동 판정(Judge)</b>은 답변이 근거에 뒷받침되는지 별도 LLM이 평가한 결과입니다. <b>문장이 매끄러운 것</b>과 <b>근거 있는 답</b>은 다르므로 칩으로 구분해 보여줍니다.</li>
       </ol>
       <div style="margin-top:8px">근거 데이터는 <b>공개용 합성 샘플 매뉴얼</b>입니다(실제 보안 매뉴얼 아님).</div>
     </section>
