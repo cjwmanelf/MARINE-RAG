@@ -42,7 +42,7 @@
     - **명령줄**: `python tools/chunks_to_web.py <세트>` → `web/public/chunks.json` 갱신 → 재빌드/배포.
     - `indexes/<세트>/chunks.jsonl` → 웹 형식 변환. ⚠️ **공개 배포는 공개 가능한 자료만**
 
-**사용 조건 (숨기지 않습니다)**
+**사용 조건**
 1. 본인 PC에서 **Ollama 실행 + `ollama pull qwen3.5:2b`**
 2. **첫 방문**에 임베딩 모델(수백 MB)이 브라우저로 다운로드됨 — 잠시 대기 (임베딩·검색은 설정 없이 동작)
 3. 답변 **생성**은 아래 (A) 또는 (B):
