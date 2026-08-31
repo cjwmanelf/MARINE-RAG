@@ -1059,7 +1059,7 @@ def chat_respond(message, history, set_name, text_threshold, img_threshold,
         history = history + [{"role": "assistant", "content":
             "매뉴얼 근거에서 확인되지 않습니다.\n\n"
             "_(질문을 바꾸거나 다른 색인 세트를 선택해 보세요. 고급 설정에서 임계값을 낮추면 저신뢰 근거까지 넓힐 수 있습니다.)_"}]
-        yield history, "_연관 자료 없음_", [], "근거 없음 → 생성 생략"
+        yield history, "_연관 자료 없음_", [], "완료 · 🔎 근거 판정: 거절(자료 밖)"
         return
 
     related_md = _build_related_md(text_hits)
@@ -1102,7 +1102,50 @@ def chat_respond(message, history, set_name, text_threshold, img_threshold,
 
     if not acc.strip():
         history[-1]["content"] = "매뉴얼 근거에서 확인되지 않습니다."
-    yield history, related_md, images, "완료"
+    verdict = judge_answer_local(message, ctx_blocks, history[-1]["content"])
+    yield history, related_md, images, f"완료 · ✍️ 생성됨(문장≠근거) · 🔎 근거 판정: {verdict}"
+
+
+def judge_answer_local(query, context_blocks, answer):
+    """LLM-as-a-Judge: 답변이 근거에 뒷받침되는지 자동 판정. 반환: 한글 라벨."""
+    if not answer or "확인되지 않습니다" in answer:
+        return "거절(근거 없음)"
+    ctx = "\n".join(f"[출처 {tag}] {text}" for tag, text in context_blocks)
+    msgs = [
+        {"role": "system", "content":
+            "당신은 RAG 답변 심판입니다. [근거]와 [답변]만 보고 판정하세요. "
+            "grounded=핵심이 근거로 확인, partial=일부만, ungrounded=근거에 없음, refusal=거절. "
+            'JSON 한 줄로만: {"verdict":"grounded|partial|ungrounded|refusal"}'},
+        {"role": "user", "content": f"[근거]\n{ctx}\n\n[답변]\n{answer}\n\nJSON:"},
+    ]
+    try:
+        payload = json.dumps({"model": LLM_MODEL, "messages": msgs, "stream": False, "think": False}).encode("utf-8")
+        req = urllib.request.Request(OLLAMA_HOST.rstrip("/") + "/api/chat", data=payload,
+                                     headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            txt = ((json.loads(r.read().decode("utf-8")).get("message") or {}).get("content") or "")
+    except Exception:  # noqa: BLE001
+        return "판정 불가(연결)"
+    m = re.search(r"grounded|partial|ungrounded|refusal", txt.lower())
+    v = m.group(0) if m else "unknown"
+    return {"grounded": "근거 충분", "partial": "근거 일부", "ungrounded": "근거 없음(주의)",
+            "refusal": "거절"}.get(v, "판정 보류")
+
+
+def save_feedback(rating, chatbot):
+    """사람 피드백(👍/👎)을 feedback.jsonl 에 기록(마지막 Q/A와 함께)."""
+    msgs = [m for m in (chatbot or []) if isinstance(m, dict)]
+    q = next((m.get("content", "") for m in reversed(msgs) if m.get("role") == "user"), "")
+    a = next((m.get("content", "") for m in reversed(msgs) if m.get("role") == "assistant"), "")
+    if not q and not a:
+        return "먼저 질문/답변이 있어야 피드백을 남길 수 있습니다."
+    rec = {"rating": rating, "question": str(q)[:300], "answer": str(a)[:500]}
+    try:
+        with open(BASE_DIR / "feedback.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    except Exception as e:  # noqa: BLE001
+        return f"피드백 저장 실패: {e}"
+    return f"피드백 저장됨: {'👍 도움됨' if rating == 'up' else '👎 아쉬움'}  (feedback.jsonl)"
 
 
 # ---------------------------------------------------------------------------
@@ -1220,7 +1263,13 @@ def build_ui():
             with gr.Row():
                 chat_multiturn = gr.Checkbox(label="멀티턴(대화 맥락 기억)", value=False)
                 chat_clear = gr.Button("🧹 대화 초기화")
-            chat_status = gr.Textbox(label="상태", interactive=False)
+            chat_status = gr.Textbox(label="상태 · 자동 근거 판정(Judge)", interactive=False)
+            with gr.Row():
+                fb_up = gr.Button("👍 도움됨", scale=1)
+                fb_down = gr.Button("👎 아쉬움", scale=1)
+                fb_status = gr.Textbox(label="사람 피드백", interactive=False, scale=3)
+            fb_up.click(fn=lambda cb: save_feedback("up", cb), inputs=[chatbot], outputs=[fb_status])
+            fb_down.click(fn=lambda cb: save_feedback("down", cb), inputs=[chatbot], outputs=[fb_status])
             with gr.Accordion("🔗 연관 근거 · 그림 (클릭해 원문 확인)", open=False):
                 chat_related = gr.Markdown("_질문하면 사용된 근거와 연관 자료가 여기에 표시됩니다._")
                 chat_gallery = gr.Gallery(

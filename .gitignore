@@ -15,6 +15,9 @@ __pycache__/
 # Gradio 실행 시 자동 생성되는 캐시/임시 폴더
 .gradio/
 
+# 로컬 사람 피드백 로그(비공개)
+feedback.jsonl
+
 # 가상환경
 .venv/
 venv/
